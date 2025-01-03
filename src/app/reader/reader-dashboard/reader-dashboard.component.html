@@ -3,11 +3,11 @@
 
   <mat-sidenav-container class="sidenav-container">
 
-    <mat-sidenav #leftSidenav mode="side">
+    <mat-sidenav #leftSidenav mode="side" style="z-index: 1;">
       <app-left-menu></app-left-menu>
     </mat-sidenav>
 
-    <mat-sidenav-content [@onMainContentChange]="onSideNavChange ? 'open': 'close'">
+    <mat-sidenav-content [@onMainContentChange]="onSideNavChange ? 'open': 'close'" style="z-index: 2;">
       <div class="main_content">
 
         <app-banner-for-reader></app-banner-for-reader>
@@ -16,10 +16,10 @@
 
         <div style="padding: 20px">
           <router-outlet>
-            
+
           </router-outlet>
         </div>
-        
+
       </div>
     </mat-sidenav-content>
 

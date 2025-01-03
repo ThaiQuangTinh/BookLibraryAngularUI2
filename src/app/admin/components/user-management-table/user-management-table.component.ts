@@ -24,8 +24,6 @@ export class UserManagementTableComponent implements OnInit {
 
   @Input() currentTab: Role = Role.All;
 
-  @Input() paginationData: any = {};
-
   // Output to share data to admin dashboard component
   @Output() changeTabEvent: EventEmitter<Role> = new EventEmitter<Role>;
 
@@ -52,7 +50,6 @@ export class UserManagementTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.buttonTabList[0].isActive = true;
-    console.log(this.paginationData);
   }
 
   // Function to open form

@@ -47,7 +47,7 @@
 
             <div class="form-input-row">
                 <label for="">Pushlish year</label>
-                <input type="text" formControlName="publishYear" class="bl-input-hover" placeholder="Please enter year">
+                <input type="text" formControlName="publishYear" class="bl-input-hover" placeholder="dd/mm/yyyy">
 
                 <div *ngIf="editBookForm.get('publishYear')?.invalid && editBookForm.get('year')?.touched">
                     <span *ngIf="editBookForm.get('publishYear')?.hasError('required')"

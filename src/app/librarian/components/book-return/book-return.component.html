@@ -7,7 +7,7 @@
 
     <div class="left-header">
         <div class="left-header-title">All book</div>
-        <div class="book-count">100</div>
+        <div class="book-count">(100)</div>
     </div>
 
     <div class="right-header">
@@ -16,13 +16,13 @@
             <i class="fa-solid fa-magnifying-glass bl-button-hover"></i>
         </div>
 
-        <div class="dropdown-container">
+        <!-- <div class="dropdown-container">
             <select id="book-category" class="dropdown">
                 <option *ngFor="let searchType of searchTypes" value="{{searchType}}">
                     {{searchType}}
                 </option>
             </select>
-        </div>
+        </div> -->
     </div>
 
 </div>
@@ -47,7 +47,7 @@
             <tr>
                 <td>
                     <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1328768386i/6393242.jpg"
-                        alt="">
+                        alt="" onerror="this.src='book.png'">
                     <span>Liliana</span>
                 </td>
                 <td>Active</td>
@@ -58,7 +58,7 @@
                 <td class="edit-icon">
                     <i class="fa-regular fa-circle-check" (click)="showBookReturnConfirmDialog()"></i>
                 </td>
-            </tr>  
+            </tr>
 
         </tbody>
     </table>

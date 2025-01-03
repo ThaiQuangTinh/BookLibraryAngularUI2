@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   templateUrl: './reader-current-borrowed.component.html',
   styleUrls: [
     './reader-current-borrowed.component.css',
-    '../../../assets/styles/table.css'
+    '../../../../assets/styles/table.css'
   ]
 })
 export class ReaderCurrentBorrowedComponent {

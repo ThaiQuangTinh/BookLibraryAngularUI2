@@ -36,8 +36,8 @@ export class EditBookComponent extends BaseOverlayComponent implements OnInit {
       category: ['detective', Validators.required],
       description: ['', Validators.required],
       publishYear: ['', Validators.required],
-      pulisher: ['', Validators.required],
-      image: [1, [Validators.required]],
+      publisher: ['', Validators.required],
+      image: [null, [Validators.required]],
       author: ['', [Validators.required]]
     });
   }

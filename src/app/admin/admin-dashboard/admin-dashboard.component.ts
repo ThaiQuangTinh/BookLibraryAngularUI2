@@ -1,6 +1,5 @@
 import { FormAction } from '../../enums/form-action.enum';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { FormName } from '../../enums/form-name.enum';
 import { UserManagementServiceService } from '../../services/admin/user-management-service.service';
 import { User } from '../../models/user.model';
@@ -34,17 +33,7 @@ export class AdminDashboardComponent implements OnInit {
   // Variable to control current tab
   public currentTab: Role = Role.All;
 
-  // Variables for pagination
-  public totalPages: number = 0;
-
-  public limit: number = 3;
-
-  public currentPage: number = 1;
-
-
   constructor(
-    private route: ActivatedRoute,
-    private router: Router,
     public formManagementService: FormManagementServiceService,
     private userManagementService: UserManagementServiceService,
     private toastMessageService: ToastServiceService

@@ -1,7 +1,5 @@
 <app-item-management-actions></app-item-management-actions>
 
-<button>Test</button>
-
 <hr class="custom-horizontal-line">
 
 <div class="contain-table-header">
@@ -37,7 +35,7 @@
             <tr *ngFor="let book of books">
                 <td>
                     <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1328768386i/6393242.jpg"
-                        alt="">
+                        alt="" onerror="this.src='book.png'">
                     <span>{{book.title}}</span>
                 </td>
                 <td>{{book.author}}</td>

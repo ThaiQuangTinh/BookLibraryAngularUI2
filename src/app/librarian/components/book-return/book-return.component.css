@@ -73,10 +73,16 @@
 
 /* CSS for table header */
 .home-reader-table-header {
+    margin: 15px 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
+}
+
+.left-header {
+    display: flex;
+    align-items: center;
 }
 
 .left-header .left-header-title {

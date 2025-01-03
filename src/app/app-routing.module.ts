@@ -6,10 +6,10 @@ import { ResetPasswordComponent } from './common/reset-password/reset-password.c
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
 import { VerifyAccountComponent } from './common/verify-account/verify-account.component';
 import { ReaderDashboardComponent } from './reader/reader-dashboard/reader-dashboard.component';
-import { ReaderHomeComponent } from './reader/reader-home/reader-home.component';
-import { ReaderFavroutiesComponent } from './reader/reader-favrouties/reader-favrouties.component';
-import { ReaderBorrowingHistoryComponent } from './reader/reader-borrowing-history/reader-borrowing-history.component';
-import { ReaderCurrentBorrowedComponent } from './reader/reader-current-borrowed/reader-current-borrowed.component';
+import { ReaderHomeComponent } from './reader/components/reader-home/reader-home.component';
+import { ReaderFavroutiesComponent } from './reader/components/reader-favrouties/reader-favrouties.component';
+import { ReaderBorrowingHistoryComponent } from './reader/components/reader-borrowing-history/reader-borrowing-history.component';
+import { ReaderCurrentBorrowedComponent } from './reader/components/reader-current-borrowed/reader-current-borrowed.component';
 import { LibrarianDashboardComponent } from './librarian/librarian-dashboard/librarian-dashboard.component';
 import { BookManagementComponent } from './librarian/components/book-management/book-management.component';
 import { BookLendingComponent } from './librarian/components/book-lending/book-lending.component';

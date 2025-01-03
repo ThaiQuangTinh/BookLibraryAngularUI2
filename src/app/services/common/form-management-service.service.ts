@@ -24,6 +24,7 @@ export class FormManagementServiceService {
     [FormName.LibrarianCreateBook]: { visible: false, data: null },
     [FormName.LibrarianEditBook]: { visible: false, data: null },
     [FormName.LibrarianBookReturnConfirmDialog]: { visible: false, data: null },
+    [FormName.ReaderDeleteUserDialog]: { visible: false, data: null },
   };
 
   // Function to get form

@@ -11,7 +11,7 @@ export class RoleHeplperServiceService {
     { id: 1, name: 'Admin' },
     { id: 2, name: 'Librarian' },
     { id: 3, name: 'Reader' },
-  ]
+  ];
 
   constructor() { }
 

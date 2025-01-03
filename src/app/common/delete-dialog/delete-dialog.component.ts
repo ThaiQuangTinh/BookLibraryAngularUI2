@@ -13,6 +13,9 @@ import { FormManagementServiceService } from '../../services/common/form-managem
 })
 export class DeleteDialogComponent extends BaseOverlayComponent implements OnInit {
 
+  // Variable contain role id of user
+  roleId: number = 0;
+
   // Varibale contains usernames for delete
   usernames: string[] = [];
 
@@ -26,6 +29,7 @@ export class DeleteDialogComponent extends BaseOverlayComponent implements OnIni
 
   public ngOnInit(): void {
     this.usernames = this.formManagementService.getForm(FormName.AdminDeleteUserDialog).data;
+    this.roleId = +(sessionStorage.getItem('role_id') || 0);
   }
 
   public onSubmit(): void {
@@ -46,9 +50,15 @@ export class DeleteDialogComponent extends BaseOverlayComponent implements OnIni
       });
   }
 
+  // Function 
+
   // Function to close this form
   public override closeForm(): void {
-    this.formManagementService.closeForm(FormName.AdminDeleteUserDialog);
+    if (this.roleId == 1) {
+      this.formManagementService.closeForm(FormName.AdminDeleteUserDialog);
+    } else if (this.roleId == 3) {
+      this.formManagementService.closeForm(FormName.ReaderDeleteUserDialog);
+    }
   }
 
 }

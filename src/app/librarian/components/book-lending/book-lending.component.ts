@@ -4,7 +4,7 @@ import { ToastServiceService } from '../../../services/utilities/toast-service.s
 import { OverlayServiceService } from '../../../services/utilities/overlay-service.service';
 import { Router } from '@angular/router';
 import { AuthenServiceService } from '../../../services/common/authen-service.service';
-import { SpinnerComponent } from '../../../services/spinner/spinner.component';
+import { SpinnerComponent } from '../../../common/spinner/spinner.component';
 
 @Component({
   selector: 'app-book-lending',

@@ -69,6 +69,11 @@
     flex-wrap: wrap;
 }
 
+.left-table-header {
+    display: flex;
+    align-items: center;
+}
+
 .left-table-header h3 {
     font-size: 25px;
 }   

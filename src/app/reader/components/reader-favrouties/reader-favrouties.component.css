@@ -1,17 +1,22 @@
 .favroutites-reader-table-header {
-    margin: 10px 0;
+    margin: 15px 0;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
 }
 
 .favroutites-reader-table-header #btnDeletFav {
-    padding: 8px 16px;
+    padding: 6px 14px;
     background-color: #df6666;  
     border: none;
     outline: none;
     color: #eee8e8;
     border-radius: 5px;
+}
+
+.left-header {
+    display: flex;
+    align-items: center;
 }
 
 .left-header-title {
