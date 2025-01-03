@@ -11,6 +11,7 @@ export class LibrarianDashboardComponent implements OnInit {
 
   public onSideNavChange: boolean = false;
 
+  // Variable to reference to FormName
   public FormName = FormName;
 
   constructor(

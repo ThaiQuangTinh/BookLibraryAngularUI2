@@ -8,12 +8,7 @@ export class ExcelReaderService {
 
   constructor() { }
 
-  /**
-  * Read Excel file and convert data to an array of objects, removing duplicates.
-  * @param file - The uploaded Excel file
-  * @param uniqueKeys - An array of keys to identify unique records (e.g., ['username', 'email'])
-  * @returns Promise<any[]> - A promise that resolves with the parsed and deduplicated data
-  */
+  // Service to read excel file
   public readExcelFile(file: File, uniqueKeys: string[] = []): Promise<any[]> {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -52,12 +47,7 @@ export class ExcelReaderService {
     });
   }
 
-  /**
-  * Remove duplicate records from an array of objects.
-  * @param data - Array of objects
-  * @param uniqueKeys - An array of keys to identify unique records
-  * @returns Array of unique objects
-  */
+  // Service to remove duplicare data
   private removeDuplicates(data: any[], uniqueKeys: string[]): any[] {
     if (uniqueKeys.length === 0) {
       // If no uniqueKeys provided, remove duplicates by comparing JSON strings
@@ -75,4 +65,5 @@ export class ExcelReaderService {
       return true; // Unique, include it
     });
   }
+
 }

@@ -9,11 +9,8 @@ export class ExportExcelTemplateService {
 
   constructor() { }
 
+  // Servcie to export template excel
   exportTemplate(field: string[], fileName: string): void {
-    // const data = [
-    //   ['username', 'email', 'fullname', 'roleId', 'phoneNumber']
-    // ];
-
     const data = [field];
 
     const worksheet: XLSX.WorkSheet = XLSX.utils.aoa_to_sheet(data);
@@ -27,4 +24,5 @@ export class ExportExcelTemplateService {
 
     saveAs(file, fileName);
   }
+  
 }

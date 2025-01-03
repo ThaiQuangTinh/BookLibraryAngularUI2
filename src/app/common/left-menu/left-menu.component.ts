@@ -30,7 +30,7 @@ export class LeftMenuComponent implements OnInit {
     if (this.roleId == 3) {
       this.pages = [
         { name: 'Home', link: 'reader-dashboard/home', icon: 'fa-house', isSelectedPage: true },
-        { name: 'Favroutie', link: 'reader-dashboard/rfavourite', icon: 'fa-star' },
+        { name: 'Favroutie', link: 'reader-dashboard/favourite', icon: 'fa-star' },
         { name: 'Borrowing history', link: 'reader-dashboard/borrowing-history', icon: 'fa-clock-rotate-left' },
         { name: 'Current borrowed', link: 'reader-dashboard/current-borrowed', icon: 'fa-ticket' },
       ];
@@ -43,8 +43,8 @@ export class LeftMenuComponent implements OnInit {
       ];
     }
 
-    // this.pages[0].isSelectedPage = true;
-    this.checkActivePage();
+    this.pages[0].isSelectedPage = true;
+    // this.checkActivePage();
   }
 
   selectPage(page: Page) {
@@ -54,16 +54,16 @@ export class LeftMenuComponent implements OnInit {
     this.router.navigate([page.link]);
   }
 
-  checkActivePage() {
-    const currentUrl = this.router.url.split('?')[0];
+  // checkActivePage() {
+  //   const currentUrl = this.router.url.split('?')[0];
 
-    this.pages.forEach(page => {
-      if (currentUrl.includes(page.link)) {
-        page.isSelectedPage = true;
-      } else {
-        page.isSelectedPage = false;
-      }
-    });
-  }
+  //   this.pages.forEach(page => {
+  //     if (currentUrl.includes(page.link)) {
+  //       page.isSelectedPage = true;
+  //     } else {
+  //       page.isSelectedPage = false;
+  //     }
+  //   });
+  // }
 
 }

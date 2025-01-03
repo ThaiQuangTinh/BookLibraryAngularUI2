@@ -58,35 +58,5 @@ export class BookServiceService {
       );
   }
 
-  // Service to create new book
-  public createBook() {
-
-  }
-
-  // Service to find book
-  public findBook() {
-
-  }
-
-  // Service to edit book
-  public editBook() {
-
-  }
-
-  // Service to delete book
-  public deleteBook() {
-
-  }
-
-  // Service to return book
-  public returnBook() {
-
-  }
-
-  // Service to lending book
-  public lendingBook() {
-    
-  }
-
 
 }

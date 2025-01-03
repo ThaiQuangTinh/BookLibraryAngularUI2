@@ -34,6 +34,14 @@ export class AdminDashboardComponent implements OnInit {
   // Variable to control current tab
   public currentTab: Role = Role.All;
 
+  // Variables for pagination
+  public totalPages: number = 0;
+
+  public limit: number = 3;
+
+  public currentPage: number = 1;
+
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -92,8 +100,6 @@ export class AdminDashboardComponent implements OnInit {
   // Function to receive data from forms
   public onReceiveDataFromForm(action: FormAction): void {
     this.reloadUsers();
-
-    console.log(this.currentTab)
 
     switch (action) {
       case FormAction.CREATE:

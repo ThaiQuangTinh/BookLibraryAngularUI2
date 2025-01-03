@@ -1,17 +1,25 @@
+<!-- Header -->
 <app-header></app-header>
 
 <div class="contain-user-management">
 
+    <!-- Functions: export, import, create user -->
     <app-item-management-actions></app-item-management-actions>
 
     <hr class="custom-horizontal-line">
 
+    <!-- Banner of admin dashboard -->
     <app-admin-banner [userRoleStatistics]="userRoleStatistics"></app-admin-banner>
 
     <hr class="custom-horizontal-line">
 
-    <app-user-management-table [totalAllRoles]="totalAllRoles" [users]="users" [currentTab]="currentTab"
-        (changeTabEvent)="onTabChange($event)"></app-user-management-table>
+    <app-user-management-table 
+        [totalAllRoles]="totalAllRoles" 
+        [users]="users" 
+        [currentTab]="currentTab"
+        [paginationData]="{totalPages, limit, currentPage}"
+        (changeTabEvent)="onTabChange($event)">
+    </app-user-management-table>
 
 </div>
 

@@ -13,16 +13,14 @@ export class AuthenServiceService {
 
   constructor(
     private http: HttpClient
-  ) { 
-    
+  ) {
+
   }
 
   // Service to login, return token if success
   public login(username: string, password: string): Observable<{ token: string }> {
     return this.http.post<{ token: string }>(`${this.baseApiUrl}/login`,
-      {
-        username, password
-      },
+      { username, password },
     );
   }
 
@@ -42,9 +40,7 @@ export class AuthenServiceService {
   // Service to rest password
   public resetPassword(code: string, email: string, newPassword: string): Observable<any> {
     return this.http.put(`${this.baseApiUrl}/reset-password`,
-      {
-        email, code, newPassword
-      },
+      { email, code, newPassword },
     );
   }
 

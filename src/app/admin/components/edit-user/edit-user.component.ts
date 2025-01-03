@@ -36,6 +36,7 @@ export class EditUserComponent extends BaseOverlayComponent implements OnInit {
     private roleHelperService: RoleHeplperServiceService
   ) {
     super();
+    // Set data for roles
     this.roles = this.roleHelperService.getRoles();
     // Initial form
     this.editUserForm = this.fb.group({

@@ -12,6 +12,11 @@ import { RoleHeplperServiceService } from '../../../services/common/role-heplper
 })
 export class UserManagementTableComponent implements OnInit {
 
+  // Variable refernce to Role Enum
+  public Role = Role;
+
+  public FormName = FormName;
+
   // Input to recive data from admin dashboard component
   @Input() totalAllRoles: number = 0;
 
@@ -19,13 +24,10 @@ export class UserManagementTableComponent implements OnInit {
 
   @Input() currentTab: Role = Role.All;
 
+  @Input() paginationData: any = {};
+
   // Output to share data to admin dashboard component
   @Output() changeTabEvent: EventEmitter<Role> = new EventEmitter<Role>;
-
-  // Variable refernce to Role Enum
-  public Role = Role;
-
-  public FormName = FormName;
 
   // Variable to contain data of input search
   public searchQuery: string = '';
@@ -50,6 +52,12 @@ export class UserManagementTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.buttonTabList[0].isActive = true;
+    console.log(this.paginationData);
+  }
+
+  // Function to open form
+  public openForm(formName: FormName): void {
+    this.formManagementService.openForm(formName);
   }
 
   // Function is call when currentTab modify (Input)
@@ -58,11 +66,11 @@ export class UserManagementTableComponent implements OnInit {
       const previousValue = changes['currentTab'].previousValue;
       const currentValue = changes['currentTab'].currentValue;
       if (previousValue !== currentValue) {
-        this.onChangeTab(currentValue); 
+        this.onChangeTab(currentValue);
       }
     }
   }
-  
+
 
   // Function to change tab
   public onChangeTab(role: Role): void {
@@ -77,11 +85,6 @@ export class UserManagementTableComponent implements OnInit {
     }
   }
 
-  // Function to save data to edit user
-  public saveDataToEditUserForm(user: User): void {
-    this.formManagementService.setForm(FormName.AdminEditUser, user);
-  }
-
   // Function to search user
   public searchUsers(): void {
     const searchQueryLower = this.searchQuery.trim().toLowerCase();
@@ -92,8 +95,15 @@ export class UserManagementTableComponent implements OnInit {
     }
   }
 
+  // Function to save data to edit user
+  public saveDataToEditUserForm(user: User): void {
+    this.openForm(FormName.AdminEditUser);
+    this.formManagementService.setForm(FormName.AdminEditUser, user);
+  }
+
   // Function to save data to delete user
   public saveDataToDeleteUserForm(usernames: string | string[]): void {
+    this.openForm(FormName.AdminDeleteUserDialog);
     const usernameArray = Array.isArray(usernames) ? usernames : [usernames];
     this.formManagementService.setForm(FormName.AdminDeleteUserDialog, usernameArray);
   }

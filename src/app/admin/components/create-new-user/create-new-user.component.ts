@@ -32,7 +32,10 @@ export class CreateNewUserComponent extends BaseOverlayComponent {
     private toastMessageService: ToastServiceService
   ) {
     super();
+    // Set data for roles
     this.roles = this.roleHelperService.getRoles();
+
+    // Init form
     this.createUserForm = this.fb.group({
       name: [``, [Validators.required, Validators.minLength(6)]],
       role: [`1`, [Validators.required]],

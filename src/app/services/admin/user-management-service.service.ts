@@ -34,6 +34,7 @@ export class UserManagementServiceService {
     return data.map(item => new User(item));
   }
 
+  // Function to get users data by role name
   private getUsersApiByRoleName(roleName: Role): string {
     let apiUrlBaseOnRole = `${this.baseApiUrl}/get-infos`;
 
