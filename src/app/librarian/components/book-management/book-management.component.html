@@ -1,0 +1,75 @@
+<app-item-management-actions></app-item-management-actions>
+
+<button>Test</button>
+
+<hr class="custom-horizontal-line">
+
+<div class="contain-table-header">
+    <div class="left-table-header">
+        <h3>All</h3>
+        <p>(100)</p>
+    </div>
+
+    <div class="right-table-header">
+        <div class="search-bar">
+            <input type="text" id="inputSearchBook" placeholder="Search">
+            <i class="fa-solid fa-magnifying-glass bl-button-hover"></i>
+        </div>
+    </div>
+</div>
+
+<div class="contain-user-table">
+    <table class="user-table" id="bookTable">
+        <thead>
+            <tr>
+                <th>Book name</th>
+                <th>Author</th>
+                <th>Pushlisher</th>
+                <th>Pushlish year</th>
+                <th>Category</th>
+                <th>Amount</th>
+                <th>Edit</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <tr *ngFor="let book of books">
+                <td>
+                    <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1328768386i/6393242.jpg"
+                        alt="">
+                    <span>{{book.title}}</span>
+                </td>
+                <td>{{book.author}}</td>
+                <td>{{book.publisher}}</td>
+                <td>{{book.publishYear | dateFormat}}</td>
+                <td>{{book.categoryName}}</td>
+                <td>{{book.totalCopies}}</td>
+                <td>
+                    <i class="fa-solid fa-pen-to-square" (click)="showEditBookForm(book)"></i>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+
+<!-- Export book template -->
+<app-export-template *ngIf="formManagementService.getFormState(FormName.LibrarianExportBookTemplate)">
+
+</app-export-template>
+
+<!-- Import book template -->
+<app-import-template *ngIf="formManagementService.getFormState(FormName.LibrarianImportBooks)">
+
+</app-import-template>
+
+<!-- Creaet book -->
+<app-create-book *ngIf="formManagementService.getFormState(FormName.LibrarianCreateBook)">
+
+</app-create-book>
+
+<!-- Edit book -->
+<app-edit-book *ngIf="formManagementService.getFormState(FormName.LibrarianEditBook)">
+
+</app-edit-book>

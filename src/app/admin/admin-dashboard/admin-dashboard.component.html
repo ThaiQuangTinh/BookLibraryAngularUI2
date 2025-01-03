@@ -1,0 +1,44 @@
+<app-header></app-header>
+
+<div class="contain-user-management">
+
+    <app-item-management-actions></app-item-management-actions>
+
+    <hr class="custom-horizontal-line">
+
+    <app-admin-banner [userRoleStatistics]="userRoleStatistics"></app-admin-banner>
+
+    <hr class="custom-horizontal-line">
+
+    <app-user-management-table [totalAllRoles]="totalAllRoles" [users]="users" [currentTab]="currentTab"
+        (changeTabEvent)="onTabChange($event)"></app-user-management-table>
+
+</div>
+
+<!-- ===== CHILD COMPONENTS ==== -->
+
+<!-- Export user template -->
+<app-export-template *ngIf="formManagementService.getFormState(FormName.AdminExportUserTemplate)">
+</app-export-template>
+
+<!-- Import template component -->
+<app-import-template *ngIf="formManagementService.getFormState(FormName.AdminImportUsers)"
+    (dataEvent)="onReceiveDataFromForm($event.action)">
+</app-import-template>
+
+<!-- Create new user component -->
+<app-create-new-user *ngIf="formManagementService.getFormState(FormName.AdminCreateUser)"
+    (dataEvent)="onReceiveDataFromForm($event.action)">
+</app-create-new-user>
+
+<!-- Edit user component -->
+<app-edit-user *ngIf="formManagementService.getFormState(FormName.AdminEditUser)"
+    (dataEvent)="onReceiveDataFromForm($event.action)">
+
+</app-edit-user>
+
+<!-- Delete user dialog component-->
+<app-delete-dialog *ngIf="formManagementService.getFormState(FormName.AdminDeleteUserDialog)"
+    (dataEvent)="onReceiveDataFromForm($event.action)">
+
+</app-delete-dialog>

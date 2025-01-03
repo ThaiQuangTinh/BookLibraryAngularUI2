@@ -1,0 +1,55 @@
+<div class="iten-management-actions">
+    <!-- Title for admin -->
+    <div *ngIf="roleId === 1" class="contain-title">
+        <h3>User management</h3>
+        <p>Find information for all users here</p>
+    </div>
+
+    <!-- Title for librarian -->
+    <div *ngIf="roleId === 2" class="contain-title">
+        <h3>Book management</h3>
+        <p>Book information management</p>
+    </div>
+
+    <!-- Button for admin -->
+    <div *ngIf="roleId === 1" class="contain-btn">
+        <div id="btnExportTemplate" class="btn-for-user-management bl-button-hover"
+            (click)="openFormByName(FormName.AdminExportUserTemplate)">
+            <i class="fa-solid fa-download"></i>
+            <span>User tenmplate</span>
+        </div>
+
+        <div id="btnImportUsers" class="btn-for-user-management bl-button-hover"
+            (click)="openFormByName(FormName.AdminImportUsers)">
+            <i class="fa-solid fa-upload"></i>
+            <span>Inport users</span>
+        </div>
+
+        <div id="btnCreateNewUser" class="btn-for-user-management bl-button-hover"
+            (click)="this.formManagementService.openForm(FormName.AdminCreateUser)">
+            <i class="fa-solid fa-plus"></i>
+            <span>Create new user</span>
+        </div>
+    </div>
+
+    <!-- Button for librarian -->
+    <div *ngIf="roleId === 2" class="contain-btn">
+        <div id="btnExportTemplate" class="btn-for-user-management bl-button-hover"
+            (click)="openFormByName(FormName.LibrarianExportBookTemplate)">
+            <i class="fa-solid fa-download"></i>
+            <span>Book tenmplate</span>
+        </div>
+
+        <div id="btnImportUsers" class="btn-for-user-management bl-button-hover"
+            (click)="openFormByName(FormName.LibrarianImportBooks)">
+            <i class="fa-solid fa-upload"></i>
+            <span>Inport books</span>
+        </div>
+
+        <div id="btnCreateNewUser" class="btn-for-user-management bl-button-hover"
+            (click)="this.formManagementService.openForm(FormName.LibrarianCreateBook)">
+            <i class="fa-solid fa-plus"></i>
+            <span>Create new book</span>
+        </div>
+    </div>
+</div>

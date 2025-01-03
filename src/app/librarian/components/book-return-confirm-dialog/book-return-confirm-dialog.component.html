@@ -1,0 +1,10 @@
+<app-base-overlay (click)="closeForm()">
+    <div class="book-return-confirm-dialog">
+        <h2 class="title">Are you sure you want to return book?</h2>
+        <p class="description-title">This will return book from the application</p>
+        <div class="contain-buttons">
+            <button class="bl-button-hover" id="btnCancel" (click)="closeForm()">Cancel</button>
+            <button class="bl-button-hover" id="btnReturnBook">Return book</button>
+        </div>
+    </div>
+</app-base-overlay>

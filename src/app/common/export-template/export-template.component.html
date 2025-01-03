@@ -1,0 +1,18 @@
+<app-base-overlay (click)="closeForm()">
+    <div class="contain-user-file-fun">
+
+        <h2 class="title">
+            Export to sample {{this.roleId == 1 ? 'user': 'book'}} list file
+        </h2>
+
+        <div class="contain-icon">
+            <i class="fa-solid fa-download"></i>
+        </div>
+
+        <div class="contain-button">
+            <button (click)="closeForm()" class="bl-button-hover">Cancel</button>
+            <button class="bl-button-hover" (click)="downloadTemplate()">Download</button>
+        </div>
+
+    </div>
+</app-base-overlay>

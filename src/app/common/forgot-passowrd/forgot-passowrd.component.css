@@ -1,0 +1,29 @@
+#headerLogoForgotPass {
+    width: 150px;
+    height: 150px;
+}
+
+#btnSendEmail {
+    margin-top: 10px;
+}
+
+.contain-redirect-login {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #807a7a;
+}
+
+.contain-redirect-login:hover {
+    cursor: pointer;
+}
+
+.contain-redirect-login span {
+    margin-left: 10px;
+}
+
+#btnSendEmail {
+    margin-top: 20px !important;
+    background-color: #363434;
+    color: #fff;
+}
