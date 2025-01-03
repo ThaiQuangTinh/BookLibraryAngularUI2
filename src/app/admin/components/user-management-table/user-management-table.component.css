@@ -58,9 +58,8 @@
     background-color: #f9f9f9;
 }
 
-.action-controls #inputSearchUser:focus {
-    border: 1px solid #ccc;
-    outline: none;
+.action-controls #inputSearchUser:focus-visible {
+    outline: 2px solid #ccc;
 }
 
 .action-controls .search-bar {

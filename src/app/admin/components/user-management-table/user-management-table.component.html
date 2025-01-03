@@ -15,11 +15,11 @@
             <div class="search-bar">
                 <input type="text" id="inputSearchUser" placeholder="Search" [(ngModel)]="searchQuery"
                     (input)="searchUsers()">
-                <i class="fa-solid fa-magnifying-glass bl-button-hover"></i>
+                <i class="fa-solid fa-magnifying-glass bl-button-hover" (click)="searchUsers()"></i>
             </div>
 
             <button id="btnDeleteChoosedUser" class="bl-button-hover"
-                (click)="formManagementService.openForm(FormName.AdminDeleteUserDialog)">Delete</button>
+                (click)="deletMultiUsers()">Delete</button>
         </div>
     </div>
 
@@ -28,7 +28,7 @@
             <thead>
                 <tr>
                     <th class="checkbox">
-                        <input type="checkbox" id="checkbox_all">
+                        <input type="checkbox" id="checkbox_all" #checkboxAll (change)="toggleSelectAll($event.target)">
                     </th>
                     <th>Name</th>
                     <th>Role</th>
@@ -48,7 +48,7 @@
 
                 <tr *ngFor="let user of users">
                     <td class="checkbox">
-                        <input type="checkbox" [(ngModel)]="user.isChecked">
+                        <input type="checkbox" [(ngModel)]="user.isChecked" (change)="toggleSelectSingle(user)">
                     </td>
                     <td>{{user.fullname}}</td>
                     <td>
@@ -74,5 +74,5 @@
             </tbody>
         </table>
     </div>
-    
+
 </div>

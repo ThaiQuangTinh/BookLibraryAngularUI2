@@ -1,9 +1,10 @@
-import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { User } from '../../../models/user.model';
 import { Role } from '../../../enums/role-enum';
 import { FormName } from '../../../enums/form-name.enum';
 import { FormManagementServiceService } from '../../../services/common/form-management-service.service';
 import { RoleHeplperServiceService } from '../../../services/common/role-heplper-service.service';
+import { ToastServiceService } from '../../../services/utilities/toast-service.service';
 
 @Component({
   selector: 'app-user-management-table',
@@ -30,6 +31,9 @@ export class UserManagementTableComponent implements OnInit {
   // Variable to contain data of input search
   public searchQuery: string = '';
 
+  // ViewChild to reference the "All" checkbox
+  @ViewChild('checkboxAll') checkboxAll: ElementRef | undefined;
+
   // Variable to contain usernames list, that is used to delete User
   public usernamesForDelete: string[] = [];
 
@@ -43,7 +47,8 @@ export class UserManagementTableComponent implements OnInit {
 
   constructor(
     public formManagementService: FormManagementServiceService,
-    public roleHelperService: RoleHeplperServiceService
+    public roleHelperService: RoleHeplperServiceService,
+    private toastMessageService: ToastServiceService
   ) {
 
   }
@@ -58,15 +63,15 @@ export class UserManagementTableComponent implements OnInit {
   }
 
   // Function is call when currentTab modify (Input)
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['currentTab']) {
-      const previousValue = changes['currentTab'].previousValue;
-      const currentValue = changes['currentTab'].currentValue;
-      if (previousValue !== currentValue) {
-        this.onChangeTab(currentValue);
-      }
-    }
-  }
+  // ngOnChanges(changes: SimpleChanges): void {
+  //   if (changes['currentTab']) {
+  //     const previousValue = changes['currentTab'].previousValue;
+  //     const currentValue = changes['currentTab'].currentValue;
+  //     if (previousValue !== currentValue) {
+  //       this.onChangeTab(currentValue);
+  //     }
+  //   }
+  // }
 
 
   // Function to change tab
@@ -80,15 +85,60 @@ export class UserManagementTableComponent implements OnInit {
         item.isActive = false;
       }
     }
+
+    // Uncheck "All" checkbox when tab changes
+    if (this.checkboxAll) {
+      this.checkboxAll.nativeElement.checked = false;
+    }
+
+    // Reset all user checkboxes and selected usernames
+    this.users.forEach(user => (user.isChecked = false));
+    this.usernamesForDelete = [];
   }
 
   // Function to search user
   public searchUsers(): void {
     const searchQueryLower = this.searchQuery.trim().toLowerCase();
-    const currentTabId = this.roleHelperService.getRoleIdByName(this.currentTab);
 
-    if (searchQueryLower === '') {
+    if (!searchQueryLower) {
+      this.changeTabEvent.emit(this.currentTab);
+    }
 
+    this.users = this.users.filter(user => {
+      const matchesRole = this.currentTab === Role.All
+        || user.roleId === this.roleHelperService.getRoleIdByName(this.currentTab);
+      const matchesQuery = user.fullname.toLowerCase().includes(searchQueryLower);
+      return matchesRole && matchesQuery;
+    });
+  }
+
+  // Function to select many checkboxes
+  public toggleSelectAll(target: any): void {
+    const isChecked = target.checked;
+
+    this.users.forEach(user => {
+      user.isChecked = isChecked;
+
+      if (isChecked && !this.usernamesForDelete.includes(user.username)) {
+        this.usernamesForDelete.push(user.username);
+      } else if (!isChecked) {
+        this.usernamesForDelete = this.usernamesForDelete.filter(username =>
+          username !== user.username
+        );
+      }
+    });
+  }
+
+  // Function to select single checkbox
+  public toggleSelectSingle(user: User): void {
+    if (user.isChecked) {
+      if (!this.usernamesForDelete.includes(user.username)) {
+        this.usernamesForDelete.push(user.username);
+      }
+    } else {
+      this.usernamesForDelete = this.usernamesForDelete.filter(username =>
+        user.username !== username
+      );
     }
   }
 
@@ -103,6 +153,18 @@ export class UserManagementTableComponent implements OnInit {
     this.openForm(FormName.AdminDeleteUserDialog);
     const usernameArray = Array.isArray(usernames) ? usernames : [usernames];
     this.formManagementService.setForm(FormName.AdminDeleteUserDialog, usernameArray);
+  }
+
+  // Function to delete multi users
+  public deletMultiUsers(): void {
+    const isSelectedUser = this.users.every(user => !user.isChecked);
+    if (isSelectedUser) {
+      this.toastMessageService.showWarning('Please choose user to delete!');
+      return;
+    }
+
+    // If user is selected
+    this.saveDataToDeleteUserForm(this.usernamesForDelete);
   }
 
 }
