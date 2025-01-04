@@ -2,11 +2,11 @@
 
     <div class="left-header">
         <div class="left-header-title">Favourite books</div>
-        <div class="book-count">(100)</div>
+        <div class="book-count">({{favoritesBookLength}})</div>
     </div>
 
     <div class="right-header">
-        <div id="btnDeletFav" class="bl-button-hover" (click)="openForm(FormName.ReaderDeleteUserDialog)">Delete</div>
+        <div id="btnDeletFav" class="bl-button-hover" (click)="removeManyFavBook()">Delete</div>
     </div>
 
 </div>
@@ -16,7 +16,9 @@
 
         <thead>
             <tr>
-                <th class="checkbox"><input type="checkbox"></th>
+                <th class="checkbox">
+                    <input type="checkbox" (change)="selectAllBooks($event)" [checked]="isAllSelected()">
+                </th>
                 <th>Book name</th>
                 <th>Author</th>
                 <th>Publisher</th>
@@ -29,20 +31,22 @@
 
         <tbody>
 
-            <tr>
-                <td class="checkbox"><input type="checkbox"></td>
-                <td>
-                    <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1328768386i/6393242.jpg"
-                        alt="">
-                    <span>Liliana</span>
+            <tr *ngFor="let book of favoritesBook">
+                <td class="checkbox">
+                    <input type="checkbox" (change)="onBookSelect(book.id, $event)"
+                        [checked]="selectedBookIds.includes(book.id)">
                 </td>
-                <td>Active</td>
-                <td>0135354553</td>
-                <td>Active</td>
-                <td>0135354553</td>
-                <td>0135354553</td>
-                <td class="delete-icon">
-                    <i class="fa-solid fa-trash" (click)="openForm(FormName.ReaderDeleteUserDialog)"></i>
+                <td>
+                    <img src="{{book.imageUrl}}" onerror="this.src='book.png'" alt="">
+                    <span>{{book.title}}</span>
+                </td>
+                <td>{{book.author}}</td>
+                <td>{{book.publisher}}</td>
+                <td>{{book.publishYear | dateFormat}}</td>
+                <td>{{book.categoryName}}</td>
+                <td>{{book.totalCopies}}</td>
+                <td class="delete-icon" (click)="this.removeFavoriteBook(book.id)">
+                    <i class="fa-solid fa-trash"></i>
                 </td>
             </tr>
 
@@ -51,6 +55,7 @@
 </div>
 
 <!-- Delete book favourite for reader -->
-<app-delete-dialog *ngIf="this.formManagementService.getFormState(FormName.ReaderDeleteUserDialog)">
+<app-delete-dialog *ngIf="this.formManagementService.getFormState(FormName.ReaderDeleteFavBookDialog)"
+    (dataEvent)="onRecieveDataFormDeleteForm($event)">
 
 </app-delete-dialog>

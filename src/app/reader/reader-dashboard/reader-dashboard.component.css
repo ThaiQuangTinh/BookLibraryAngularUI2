@@ -10,3 +10,38 @@
   height: 1px;
   background-color: #ccc;
 }
+
+/* Add new */
+/* mat-sidenav-content {
+  width: 100%;
+}
+
+.sidenav-container {
+  height: 100vh;
+  display: flex;
+}
+
+main-content {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+}
+
+.main-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden; 
+}
+
+.scrollable-content {
+  flex-grow: 1; 
+  overflow-y: auto;
+  padding: 20px;
+} */

@@ -53,6 +53,7 @@ export class AuthenServiceService {
   public saveToken(token: string, decodedData: JwtPayload): void {
     sessionStorage.setItem('authen_token', `Bearer ${token}`);
     sessionStorage.setItem('fullname', decodedData.fullname);
+    sessionStorage.setItem('username', decodedData.username);
     sessionStorage.setItem('role_id', decodedData.roleId.toString());
     sessionStorage.setItem('image_url', decodedData.imageUrl);
     sessionStorage.setItem('email', decodedData.email);
@@ -67,6 +68,7 @@ export class AuthenServiceService {
   public clearToken(): void {
     sessionStorage.removeItem('authen_token');
     sessionStorage.removeItem('fullname');
+    sessionStorage.removeItem('username');
     sessionStorage.removeItem('role_id');
     sessionStorage.removeItem('image_url');
     sessionStorage.removeItem('email');
@@ -77,6 +79,7 @@ export class AuthenServiceService {
 // Define interface for JwtPayload
 interface JwtPayload {
   fullname: string,
+  username: string,
   roleId: number,
   isActivated: boolean,
   imageUrl: string,

@@ -44,7 +44,7 @@ export class LeftMenuComponent implements OnInit {
     }
 
     this.pages[0].isSelectedPage = true;
-    // this.checkActivePage();
+    this.checkActivePage();
   }
 
   selectPage(page: Page) {
@@ -54,16 +54,16 @@ export class LeftMenuComponent implements OnInit {
     this.router.navigate([page.link]);
   }
 
-  // checkActivePage() {
-  //   const currentUrl = this.router.url.split('?')[0];
+  checkActivePage() {
+    const currentUrl = this.router.url.split('?')[0];
 
-  //   this.pages.forEach(page => {
-  //     if (currentUrl.includes(page.link)) {
-  //       page.isSelectedPage = true;
-  //     } else {
-  //       page.isSelectedPage = false;
-  //     }
-  //   });
-  // }
+    this.pages.forEach(page => {
+      if (currentUrl.includes(page.link)) {
+        page.isSelectedPage = true;
+      } else {
+        page.isSelectedPage = false;
+      }
+    });
+  }
 
 }

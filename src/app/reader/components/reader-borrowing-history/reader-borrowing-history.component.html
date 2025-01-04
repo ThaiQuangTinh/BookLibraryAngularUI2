@@ -21,40 +21,16 @@
 
         <tbody>
 
-            <tr>
+            <tr *ngFor="let item of bookBorrowingHistory">
                 <td>
-                    <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1328768386i/6393242.jpg"
+                    <img src="{{item.imageUrl}}" onerror="this.src='book.png'"
                         alt="">
-                    <span>Liliana</span>
+                    <span>{{item.bookName}}</span>
                 </td>
-                <td>Active</td>
-                <td>0135354553</td>
-                <td>Active</td>
-                <td>0135354553</td>
-            </tr>
-
-            <tr>
-                <td>
-                    <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1328768386i/6393242.jpg"
-                        alt="">
-                    <span>Liliana</span>
-                </td>
-                <td>Active</td>
-                <td>0135354553</td>
-                <td>Active</td>
-                <td>0135354553</td>
-            </tr>
-
-            <tr>
-                <td>
-                    <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1328768386i/6393242.jpg"
-                        alt="">
-                    <span>Liliana</span>
-                </td>
-                <td>Active</td>
-                <td>0135354553</td>
-                <td>Active</td>
-                <td>0135354553</td>
+                <td>{{item.loanDate}}</td>
+                <td>{{item.dueDate}}</td>
+                <td>{{item.returnDate}}</td>
+                <td>{{item.fine}}$</td>
             </tr>
 
         </tbody>

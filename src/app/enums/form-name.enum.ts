@@ -10,6 +10,6 @@ export enum FormName {
     LibrarianCreateBook = 'createBook',
     LibrarianEditBook = 'editBook',
     LibrarianBookReturnConfirmDialog = 'bookReturnConfirmDialog',
-    ReaderDeleteUserDialog = 'readerDeleteUserDialog'
+    ReaderDeleteFavBookDialog = 'readerDeleteUserDialog'
 }
 

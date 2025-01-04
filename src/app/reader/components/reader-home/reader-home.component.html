@@ -2,13 +2,14 @@
 
     <div class="left-header">
         <div class="left-header-title">All book</div>
-        <div class="book-count">(100)</div>
+        <div class="book-count">({{booksCount}})</div>
     </div>
 
     <div class="right-header">
         <div class="search-bar">
-            <input type="text" id="inputSearchUser" placeholder="Search">
-            <i class="fa-solid fa-magnifying-glass bl-button-hover"></i>
+            <input type="text" id="inputSearchUser" [(ngModel)]="searchQuery" placeholder="Please enter book name"
+                (input)="searchBook()">
+            <i class="fa-solid fa-magnifying-glass bl-button-hover" (click)="searchBook()"></i>
         </div>
 
         <!-- <div class="dropdown-container">
@@ -36,24 +37,26 @@
             </tr>
         </thead>
 
-        <tbody> 
+        <tbody>
+            <div *ngIf="books.length === 0" style="padding: 10px;">
+               No matching results found.
+            </div>
 
-            <tr>
+            <tr *ngFor="let book of books">
                 <td>
-                    <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1328768386i/6393242.jpg"
-                        alt="">
-                    <span>Liliana</span>
+                    <img src="{{book.imageUrl}}" onerror="this.src='book.png'" alt="">
+                    <span>{{book.title}}</span>
                 </td>
-                <td>Active</td>
-                <td>0135354553</td>
-                <td>Active</td>
-                <td>0135354553</td>
-                <td>0135354553</td>
+                <td>{{book.author}}</td>
+                <td>{{book.publisher}}</td>
+                <td>{{book.publishYear | dateFormat}}</td>
+                <td>{{book.categoryName}}</td>
+                <td>{{book.totalCopies}}</td>
                 <td>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-regular fa-star" [ngClass]="favoriteBooks[book.id] ? 'fa-solid' : 'fa-regular'"
+                        (click)="toggleFavorite(book.id)"></i>
                 </td>
-            </tr> 
+            </tr>
 
         </tbody>
     </table>

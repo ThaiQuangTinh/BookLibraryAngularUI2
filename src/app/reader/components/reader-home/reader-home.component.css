@@ -133,3 +133,8 @@
     text-overflow: ellipsis;
     overflow: hidden;
 }
+
+/* CSS for star */
+.fa-star.fa-solid {
+    color: rgb(175, 175, 44);
+}
