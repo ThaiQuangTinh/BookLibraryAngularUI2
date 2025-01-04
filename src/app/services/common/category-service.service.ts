@@ -12,8 +12,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 export class CategoryServiceService {
 
   private baseApiUrl: string = 'http://localhost:8200/book-categories';
-  // Define base api url
-  private getAll = "book-categories/get-all";
+  private getAll = "/get-all";
   constructor(
     private http: HttpClient
     private authenService: AuthenServiceService,
@@ -32,9 +31,8 @@ export class CategoryServiceService {
 
 
   private handleGetCategories() : Observable<CommonResponse<Category[]>> {
-    return this.httpClient.get<CommonResponse<Category[]>>(this.matchRoute(this.getAll), {headers: headers});
     const headers = this.createHeader();
-
+    return this.http.get<CommonResponse<Category[]>>(this.matchRoute(this.getAll), {headers: headers});
   }
 
   // Service to get categories
