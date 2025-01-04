@@ -86,5 +86,4 @@ interface JwtPayload {
   isActivated: boolean,
   imageUrl: string,
   email: string,
-  username: string,
 }

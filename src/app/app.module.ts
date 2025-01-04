@@ -51,8 +51,8 @@ import { UserManagementTableComponent } from './admin/components/user-management
 import { ItemManagementActionsComponent } from './common/item-management-actions/item-management-actions.component';
 import { BaseOverlayComponent } from './common/base-overlay/base-overlay.component';
 import { BookReturnConfirmDialogComponent } from './librarian/components/book-return-confirm-dialog/book-return-confirm-dialog.component';
-import { BookImagePipe } from './pipe/book-image.pipe';
-import { BookCategoryPipe } from './pipe/book-category.pipe';
+import { BookImagePipe } from './pipes/book-image.pipe';
+import { BookCategoryPipe } from './pipes/book-category.pipe';
 import { PageNotFoundComponent } from '././common/page-not-found/page-not-found.component';
 
 @NgModule({

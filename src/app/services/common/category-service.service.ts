@@ -1,10 +1,9 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { lastValueFrom, Observable } from 'rxjs';
 import { CommonResponse } from '../../models/common-response.model';
 import { Category } from '../../models/category.model';
 import { AuthenServiceService } from './authen-service.service';
-import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +13,7 @@ export class CategoryServiceService {
   private baseApiUrl: string = 'http://localhost:8200/book-categories';
   private getAll = "/get-all";
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
     private authenService: AuthenServiceService,
   ) { }
   private createHeader(): HttpHeaders {
@@ -26,8 +25,8 @@ export class CategoryServiceService {
   }
 
   private matchRoute(apiUrl: string) : string {
-  }
     return this.baseApiUrl + apiUrl;
+  }
 
 
   private handleGetCategories() : Observable<CommonResponse<Category[]>> {
@@ -39,6 +38,7 @@ export class CategoryServiceService {
   public async getCategories() : Promise<Category[]> {
     const response = await lastValueFrom(this.handleGetCategories());
     return response.data;
+  }
   // Service to get categories
   public getPopularCategories(count: number = 3): Observable<any> {
     const params = new HttpParams().set('limit', count);
