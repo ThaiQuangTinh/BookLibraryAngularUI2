@@ -1,0 +1,23 @@
+.contain-page-not-found {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contain-page-not-found img {
+    margin-top: 100px;
+    width: 400px;
+    height: 250px;
+    /* object-fit: cover; */
+}
+
+.contain-page-not-found h2 {
+    font-weight: 500;
+    font-size: 45px;
+}
+
+.contain-page-not-found p {
+    margin-top: 20px;
+}

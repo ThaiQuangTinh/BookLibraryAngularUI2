@@ -42,14 +42,16 @@ import { BookReturnComponent } from './librarian/components/book-return/book-ret
 import { ReportComponent } from './librarian/components/report/report.component';
 import { CreateBookComponent } from './librarian/components/create-book/create-book.component';
 import { EditBookComponent } from './librarian/components/edit-book/edit-book.component';
-import { DateFormatPipe } from './pipe/date-format.pipe';
-import { DecimalPrecisionPipe } from './pipe/decimal-precision.pipe';
+import { DateFormatPipe } from './pipes/date-format.pipe';
+import { DecimalPrecisionPipe } from './pipes/decimal-precision.pipe';
+import { SafeImagePipe } from './pipes/safe-image.pipe';
 import { DeleteDialogComponent } from './common/delete-dialog/delete-dialog.component';
 import { AdminBannerComponent } from './admin/components/admin-banner/admin-banner.component';
 import { UserManagementTableComponent } from './admin/components/user-management-table/user-management-table.component';
 import { ItemManagementActionsComponent } from './common/item-management-actions/item-management-actions.component';
 import { BaseOverlayComponent } from './common/base-overlay/base-overlay.component';
 import { BookReturnConfirmDialogComponent } from './librarian/components/book-return-confirm-dialog/book-return-confirm-dialog.component';
+import { PageNotFoundComponent } from '././common/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -82,12 +84,14 @@ import { BookReturnConfirmDialogComponent } from './librarian/components/book-re
     EditBookComponent,
     DateFormatPipe,
     DecimalPrecisionPipe,
+    SafeImagePipe,
     DeleteDialogComponent,
     AdminBannerComponent,
     UserManagementTableComponent,
     ItemManagementActionsComponent,
     BaseOverlayComponent,
     BookReturnConfirmDialogComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,

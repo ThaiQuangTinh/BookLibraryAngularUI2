@@ -13,7 +13,7 @@
     <div id="rightHeader">
         <div id="containUserInfo" (click)="showUserProfileService()" mat-raised-button matTooltip="User information"
             matTooltipPosition="above">
-            <img [src]="user.imageUrl || 'avatar_user.png'" alt="avatar_user" id="avatar_user" onerror="this.src='user_avatar.png'">
+            <img [src]="user.imageUrl | safeImage:'user_avatar.png' " alt="avatar_user" id="avatar_user">
             <span id="fullname">{{user.fullname}}</span>
         </div>
 
@@ -23,7 +23,7 @@
 </header>
 
 <!-- Userprofile component -->
-<app-user-profile *ngIf="isUserProfileFormVisible" [user]="user" 
+<app-user-profile *ngIf="isUserProfileFormVisible" [user]="user"
     (dataEvent)="onReceiveDataFromUserProfileForm($event.formName, $event.action)">
 
 </app-user-profile>

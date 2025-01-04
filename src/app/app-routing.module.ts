@@ -17,6 +17,7 @@ import { BookReturnComponent } from './librarian/components/book-return/book-ret
 import { ReportComponent } from './librarian/components/report/report.component';
 import { CreateNewUserComponent } from './admin/components/create-new-user/create-new-user.component';
 import { BookReturnConfirmDialogComponent } from './librarian/components/book-return-confirm-dialog/book-return-confirm-dialog.component';
+import { PageNotFoundComponent } from './common/page-not-found/page-not-found.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'forgot-password', component: ForgotPassowrdComponent },
   { path: 'reset-password', component: ResetPasswordComponent },
   { path: 'verify-account', component: VerifyAccountComponent },
+  { path: 'page-not-found', component: PageNotFoundComponent },
   // Test
   { path: 'test', component: BookReturnConfirmDialogComponent },
   // Routing for admin
@@ -50,7 +52,7 @@ const routes: Routes = [
       { path: 'report', component: ReportComponent }
     ]
   },
-  { path: '**', redirectTo: '/login', pathMatch: 'full' }
+  { path: '**', redirectTo: '/page-not-found', pathMatch: 'full' }
 ];
 
 @NgModule({

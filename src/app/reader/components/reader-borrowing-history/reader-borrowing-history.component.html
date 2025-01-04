@@ -23,8 +23,7 @@
 
             <tr *ngFor="let item of bookBorrowingHistory">
                 <td>
-                    <img src="{{item.imageUrl}}" onerror="this.src='book.png'"
-                        alt="">
+                    <img [src]="item.imageUrl | safeImage: 'book.png'" alt="Book">
                     <span>{{item.bookName}}</span>
                 </td>
                 <td>{{item.loanDate}}</td>
