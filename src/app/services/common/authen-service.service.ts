@@ -56,6 +56,7 @@ export class AuthenServiceService {
     sessionStorage.setItem('role_id', decodedData.roleId.toString());
     sessionStorage.setItem('image_url', decodedData.imageUrl);
     sessionStorage.setItem('email', decodedData.email);
+    sessionStorage.setItem('username', decodedData.username);
   }
 
   // Service to get token
@@ -70,6 +71,7 @@ export class AuthenServiceService {
     sessionStorage.removeItem('role_id');
     sessionStorage.removeItem('image_url');
     sessionStorage.removeItem('email');
+    sessionStorage.removeItem('username');
   }
 
 }
@@ -80,5 +82,6 @@ interface JwtPayload {
   roleId: number,
   isActivated: boolean,
   imageUrl: string,
-  email: string
+  email: string,
+  username: string,
 }
