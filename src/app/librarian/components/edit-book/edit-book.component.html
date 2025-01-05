@@ -21,8 +21,8 @@
             <div class="form-input-row">
                 <label for="">Category</label>
                 <select id="category" formControlName="category" name="category" class="bl-input-hover">
-                    <option *ngFor="let category of categories" value="{{category}}">
-                        {{category}}
+                    <option *ngFor="let category of categories" value="{{category._id}}">
+                        {{category.categoryName}}
                     </option>
                     <option value="3">Scicence</option>
                 </select>
@@ -77,7 +77,7 @@
 
             <div class="form-input-row">
                 <label for="">Image</label>
-                <input type="file" formControlName="image" class="bl-input-hover">
+                <input type="file" class="bl-input-hover" (change)="this.onImageChange($event)" accept="image/*">
 
                 <div *ngIf="editBookForm.get('totalCopies')?.invalid && editBookForm.get('totalCopies')?.touched">
                     <span *ngIf="editBookForm.get('totalCopies')?.hasError('required')" class="form-validation-message">
@@ -103,11 +103,13 @@
                 </div>
             </div>
 
+            <input type="hidden" formControlName="image">
+
         </div>
 
         <div class="conatin-btns">
             <button (click)="closeForm()" id="btnCancelEditBook" class="bl-button-hover">Cancel</button>
-            <button id="btnConfirmEditBook" class="bl-button-hover" [disabled]="editBookForm.invalid">Confirm</button>
+            <button id="btnConfirmEditBook" class="bl-button-hover" [disabled]="editBookForm.invalid" (click)="this.onEditSubmit()">Confirm</button>
         </div>
     </form>
 </app-base-overlay>

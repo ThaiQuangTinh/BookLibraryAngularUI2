@@ -47,7 +47,7 @@ export class ExportTemplateComponent extends BaseOverlayComponent implements OnI
       field = ['username', 'email', 'fullname', 'roleId', 'phoneNumber'];
       this.exportExcelTemplateService.exportTemplate(field, 'User_Template.xlsx');
     } else if (this.roleId === 2) {
-      field = ['bookname', 'email', 'fullname', 'roleId', 'phoneNumber'];
+      field = ['title', 'categoryId', 'description', 'year', 'publisher', 'copies', 'author'];
       this.exportExcelTemplateService.exportTemplate(field, 'Book_Template.xlsx');
     }
 

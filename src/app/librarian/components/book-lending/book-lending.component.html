@@ -33,7 +33,8 @@
 
         <div class="contain-button">
             <button id="btnLogin" class="form-button bl-button-hover" [disabled]="bookLendingForm.invalid"
-                type="submit">Confirm</button>
+                type="submit"
+                (click)="this.onLendingSubmit()">Confirm</button>
         </div>
 
     </form>

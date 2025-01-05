@@ -35,7 +35,7 @@
                 <th>Book name</th>
                 <th>Author</th>
                 <th>Book copy code</th>
-                <th>Borrower name</th>
+                <th>Borrower id</th>
                 <th>Category</th>
                 <th>Ammount</th>
                 <th>Return</th>
@@ -43,20 +43,19 @@
         </thead>
 
         <tbody>
-
-            <tr>
+            <tr *ngFor="let loan of loans;index as i">
                 <td>
                     <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1328768386i/6393242.jpg"
                         alt="" onerror="this.src='book.png'">
-                    <span>Liliana</span>
+                    <span>{{loan.book.title}}</span>
                 </td>
-                <td>Active</td>
-                <td>0135354553</td>
-                <td>Active</td>
-                <td>0135354553</td>
-                <td>0135354553</td>
+                <td>{{loan.book.author}}</td>
+                <td>{{loan.book._id}}</td>
+                <td>{{loan.readerUsername}}</td>
+                <td>{{loan.book.categorys | bookCategory}}</td>
+                <td>{{loan.book.totalCopies}}</td>
                 <td class="edit-icon">
-                    <i class="fa-regular fa-circle-check" (click)="showBookReturnConfirmDialog()"></i>
+                    <i class="fa-regular fa-circle-check" (click)="showBookReturnConfirmDialog(i)"></i>
                 </td>
             </tr>
 
@@ -65,6 +64,8 @@
 </div>
 
 <!-- Book return confirm dialog -->
-<app-book-return-confirm-dialog *ngIf="formManagementService.getFormState(FormName.LibrarianBookReturnConfirmDialog)">
+<app-book-return-confirm-dialog *ngIf="formManagementService.getFormState(FormName.LibrarianBookReturnConfirmDialog)"
+ (onConfirm)="this.returnBook()"
+>
 
 </app-book-return-confirm-dialog>
