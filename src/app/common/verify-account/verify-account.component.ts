@@ -48,13 +48,12 @@ export class VerifyAccountComponent implements OnInit {
     this.verifyAccountForm.get('activationCode')?.disable();
 
     // Get data of token from local storage
-    const image_url = sessionStorage.getItem('image_url');
-    const fullname = sessionStorage.getItem('fullname');
-    const email = sessionStorage.getItem('email');
+    const image_url = localStorage.getItem('image_url');
+    const fullname = localStorage.getItem('fullname');
+    const email = localStorage.getItem('email');
 
     // Set imgae, fullname, .. for UI
     if (fullname && email) {
-      this.imageUrl = `http://localhost:8100${image_url}`;
       this.fullName = fullname;
       this.email = email;
     }
@@ -88,7 +87,7 @@ export class VerifyAccountComponent implements OnInit {
   public validateCodeToVerifyAcc(): void {
     // Get necessary data 
     const code = this.verifyAccountForm?.get('activationCode')?.value.trim();
-    const authenToken = sessionStorage.getItem('authen_token');
+    const authenToken = localStorage.getItem('authen_token');
 
     // Show spinner loading while verify code
     this.spinnerLoadingService.open('Validating code, please wait...');

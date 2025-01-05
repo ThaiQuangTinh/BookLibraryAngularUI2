@@ -39,7 +39,7 @@ export class ReaderFavroutiesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.username = sessionStorage.getItem('username') || '';
+    this.username = localStorage.getItem('username') || '';
     this.fetchDataToFavoriteBook();
   }
 

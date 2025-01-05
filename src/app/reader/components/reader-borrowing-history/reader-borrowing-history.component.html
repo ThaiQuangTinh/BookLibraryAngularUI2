@@ -14,8 +14,8 @@
                 <th>Book name</th>
                 <th>Loan date</th>
                 <th>Due date</th>
-                <th>Return date</th>
-                <th>Fine</th>
+                <th>Return status</th>
+                <!-- <th>Fine</th> -->
             </tr>
         </thead>
 
@@ -23,13 +23,13 @@
 
             <tr *ngFor="let item of bookBorrowingHistory">
                 <td>
-                    <img [src]="item.imageUrl | safeImage: 'book.png'" alt="Book">
-                    <span>{{item.bookName}}</span>
+                    <img [src]="item.book.imageUrl[0] | safeImage: 'book.png'" alt="Book">
+                    <span>{{item.book.title}}</span>
                 </td>
-                <td>{{item.loanDate}}</td>
-                <td>{{item.dueDate}}</td>
-                <td>{{item.returnDate}}</td>
-                <td>{{item.fine}}$</td>
+                <td>{{item.loanDate | dateFormat}}</td>
+                <td>{{item.dueDate | dateFormat}}</td>
+                <td [ngClass]="item.status | loanStatusLabel">{{item.status | loanStatusLabel: true}}</td>
+                <!-- <td>{{item.fine}}$</td> -->
             </tr>
 
         </tbody>

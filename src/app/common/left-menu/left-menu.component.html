@@ -1,5 +1,5 @@
 <div class="sidenav_container" [@onSideNavChange]="sideNavState ? 'open' : 'close'">
-  <div fxLayout="column" fxLayoutGap="10px" style="height: 100%;">
+  <div fxLayout="column" fxLayoutGap="10px" style="height: calc(100% - 100px) !important;">
     <div>
       <mat-nav-list>
         <a class="mat-list-item" mat-list-item *ngFor="let page of pages"

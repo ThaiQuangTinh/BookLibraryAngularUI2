@@ -33,7 +33,7 @@ export class DeleteDialogComponent extends BaseOverlayComponent implements OnIni
   }
 
   public ngOnInit(): void {
-    this.roleId = +(sessionStorage.getItem('role_id') || 0);
+    this.roleId = +(localStorage.getItem('role_id') || 0);
     if (this.roleId == 1) {
       this.usernames = this.formManagementService.getForm(FormName.AdminDeleteUserDialog).data;
     } else if (this.roleId == 3) {
@@ -65,7 +65,7 @@ export class DeleteDialogComponent extends BaseOverlayComponent implements OnIni
 
   // Function to delete favorite book
   public deleteFavoriteBook(): void {
-    const username = sessionStorage.getItem('username');
+    const username = localStorage.getItem('username');
 
     if (username) {
       this.bookFavoriteService.removeFavorite(username, this.favoriteBookIds)

@@ -21,7 +21,7 @@ export class ItemManagementActionsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.roleId = +(sessionStorage.getItem('role_id') || 0);
+    this.roleId = +(localStorage.getItem('role_id') || 0);
   }
 
   // Function to open form by name

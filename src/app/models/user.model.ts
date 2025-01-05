@@ -33,7 +33,7 @@ export class User {
     this.delFlg = data?.delFlg || false;
     this.username = data?.username || '';
     this.email = data?.email || '';
-    this.imageUrl = 'http://localhost:8100' + data?.imageUrl || '';
+    this.imageUrl = data?.imageUrl ? `http://localhost:8100${data.imageUrl}` : '';
     this.isChecked = data?.isChecked || false;
   }
   

@@ -26,7 +26,7 @@ export class LeftMenuComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.roleId = +(sessionStorage.getItem('role_id') || 0);
+    this.roleId = +(localStorage.getItem('role_id') || 0);
     if (this.roleId == 3) {
       this.pages = [
         { name: 'Home', link: 'reader-dashboard/home', icon: 'fa-house', isSelectedPage: true },
@@ -39,7 +39,7 @@ export class LeftMenuComponent implements OnInit {
         { name: 'Book management', link: 'librarian-dashboard/book-management', icon: 'fa-bars-progress', isSelectedPage: true },
         { name: 'Book lending', link: 'librarian-dashboard/book-lending', icon: 'fa-handshake' },
         { name: 'Book return', link: 'librarian-dashboard/book-return', icon: 'fa-droplet' },
-        { name: 'Report', link: 'librarian-dashboard/report', icon: 'fa-flag' },
+        // { name: 'Report', link: 'librarian-dashboard/report', icon: 'fa-flag' },
       ];
     }
 

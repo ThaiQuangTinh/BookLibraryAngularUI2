@@ -16,6 +16,7 @@ import { LoanStatus } from '../../../enums/loan-status.enum';
   ],
 })
 export class BookReturnComponent implements OnInit {
+
   public FormName = FormName;
 
   // Variable contain types to search
@@ -30,13 +31,17 @@ export class BookReturnComponent implements OnInit {
     private authenService: AuthenServiceService,
     private toastrService: ToastServiceService,
     private loanService: LoanManagementServiceService
-  ) {}
+  ) { }
 
   async ngOnInit() {
+    await this.fetchLoan();
+  }
+
+  // 
+  public async fetchLoan() {
     this.loans = await this.loanService.getOverDueAll();
     this.loans = this.loans.filter((loan) => loan.status == LoanStatus.BORROWED);
     this.loans = [...(await this.loanService.getBorrowedAll()), ...this.loans];
-    console.log(this.loans);
   }
 
   // Functio to show book return confrim dialog
@@ -52,10 +57,42 @@ export class BookReturnComponent implements OnInit {
     try {
       await this.loanService.returnBook(copyId);
       this.toastrService.showSuccess("Return book successfull");
-      this.loans.splice(this.returnedIndex,1);
+      this.loans.splice(this.returnedIndex, 1);
       this.returnedIndex = 0;
     } catch (error) {
       this.toastrService.showSuccess("Book is returned fail");
     }
+  }
+
+  private debounce<T extends (...args: any[]) => void>(
+    func: T,
+    wait: number
+  ): (...args: Parameters<T>) => void {
+    let timeoutId: ReturnType<typeof setTimeout> | null = null;
+
+    return (...args: Parameters<T>) => {
+      if (timeoutId !== null) {
+        clearTimeout(timeoutId);
+      }
+      timeoutId = setTimeout(() => {
+        func(...args);
+      }, wait);
+    };
+  }
+
+  private searchDebounce = this.debounce(async (bookName: string) => {
+    await this.fetchLoan();
+    if (bookName && bookName !== '') {
+      this.loans = this.loans.filter((loan) =>
+        loan.book.title.toLowerCase().includes(bookName.toLowerCase())
+      );
+    }
+    console.log(this.loans);
+  }, 1000);
+
+  public onBookSearch(event: Event) {
+    const bookName = (event.target as HTMLInputElement).value;
+
+    this.searchDebounce(bookName);
   }
 }

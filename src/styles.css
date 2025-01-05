@@ -52,3 +52,26 @@ button:disabled:hover {
 .custom-backdrop {
     background-color: #212121b0;
 }
+
+/* CSS for toast module */
+.toast-top-right {
+    margin-top: 50px; /* Điều chỉnh giá trị theo ý bạn */
+  }
+  
+/* CSS for another component */
+/* app-librarian-dashboard {
+    overflow-y: hidden;
+} */
+
+/* CSS for status of loan */
+.intime {
+    color: #5a9d49;
+    font-weight: bold;
+    font-weight: 500;
+}
+
+.overdue {
+    color: rgb(182, 26, 26);
+    font-weight: bold;
+    font-weight: 500;
+}

@@ -65,8 +65,8 @@ export class ResetPasswordComponent {
     }
 
     // Get necessary data form session storage
-    const email = sessionStorage.getItem('email_to_forgot_pass');
-    const code = sessionStorage.getItem('code_email');
+    const email = localStorage.getItem('email_to_forgot_pass');
+    const code = localStorage.getItem('code_email');
     const newPassword = this.resetPasswordForm.get('password')?.value;
 
     // Check email and code is valid or not
@@ -75,8 +75,8 @@ export class ResetPasswordComponent {
       this.authenService.resetPassword(code, email, newPassword).subscribe({
         next: (res) => {
           // Cleaer all data on session storage
-          sessionStorage.removeItem('email_to_forgot_pass');
-          sessionStorage.removeItem('code_email');
+          localStorage.removeItem('email_to_forgot_pass');
+          localStorage.removeItem('code_email');
 
           // Show toast message and necessary notification
           this.toastMessageService.showSuccess(res.message);

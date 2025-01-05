@@ -17,6 +17,17 @@ export class AuthenServiceService {
 
   }
 
+  // Service to validate token 
+  public validateToken(token: string): Observable<any> {
+    return this.http.post(`${this.baseApiUrl}/validate`, {},
+      {
+        headers: {
+          'Content-type': 'application/json',
+          'Authorization': token
+        }
+      });
+  }
+
   // Service to login, return token if success
   public login(username: string, password: string): Observable<{ token: string }> {
     return this.http.post<{ token: string }>(`${this.baseApiUrl}/login`,
@@ -51,29 +62,29 @@ export class AuthenServiceService {
 
   // Service to save token
   public saveToken(token: string, decodedData: JwtPayload): void {
-    sessionStorage.setItem('authen_token', `Bearer ${token}`);
-    sessionStorage.setItem('fullname', decodedData.fullname);
-    sessionStorage.setItem('username', decodedData.username);
-    sessionStorage.setItem('role_id', decodedData.roleId.toString());
-    sessionStorage.setItem('image_url', decodedData.imageUrl);
-    sessionStorage.setItem('email', decodedData.email);
-    sessionStorage.setItem('username', decodedData.username);
+    localStorage.setItem('authen_token', `Bearer ${token}`);
+    localStorage.setItem('fullname', decodedData.fullname);
+    localStorage.setItem('username', decodedData.username);
+    localStorage.setItem('role_id', decodedData.roleId.toString());
+    localStorage.setItem('image_url', decodedData.imageUrl);
+    localStorage.setItem('email', decodedData.email);
+    localStorage.setItem('username', decodedData.username);
   }
 
   // Service to get token
   public getToken(): string | null {
-    return sessionStorage.getItem('authen_token');
+    return localStorage.getItem('authen_token');
   }
 
   // Service to clear token
   public clearToken(): void {
-    sessionStorage.removeItem('authen_token');
-    sessionStorage.removeItem('fullname');
-    sessionStorage.removeItem('username');
-    sessionStorage.removeItem('role_id');
-    sessionStorage.removeItem('image_url');
-    sessionStorage.removeItem('email');
-    sessionStorage.removeItem('username');
+    localStorage.removeItem('authen_token');
+    localStorage.removeItem('fullname');
+    localStorage.removeItem('username');
+    localStorage.removeItem('role_id');
+    localStorage.removeItem('image_url');
+    localStorage.removeItem('email');
+    localStorage.removeItem('username');
   }
 
 }

@@ -27,7 +27,7 @@ export class ExportTemplateComponent extends BaseOverlayComponent implements OnI
   }
 
   ngOnInit(): void {
-    this.roleId = +(sessionStorage.getItem('role_id') || 0);
+    this.roleId = +(localStorage.getItem('role_id') || 0);
   }
 
   // Function to close form

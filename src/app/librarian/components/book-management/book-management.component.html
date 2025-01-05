@@ -10,7 +10,7 @@
 
   <div class="right-table-header">
     <div class="search-bar">
-      <input type="text" id="inputSearchBook" placeholder="Search" (input)="onSearchBookName($event)"/>
+      <input type="text" id="inputSearchBook" placeholder="Search" (input)="onSearchBookName($event)" />
       <i class="fa-solid fa-magnifying-glass bl-button-hover"></i>
     </div>
   </div>
@@ -35,11 +35,7 @@
         <td>
           <!-- <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1328768386i/6393242.jpg"
                         alt="" onerror="this.src='book.png'"> -->
-          <img
-            src="{{ book.imageUrl | bookImage }}"
-            alt=""
-            onerror="this.src='book.png'"
-          />
+          <img [src]="book.imageUrl | safeImage:'book.png'" alt="Book" />
           <span>{{ book.title }}</span>
         </td>
         <td>{{ book.author }}</td>
@@ -56,30 +52,22 @@
 </div>
 
 <!-- Export book template -->
-<app-export-template
-  *ngIf="
+<app-export-template *ngIf="
     formManagementService.getFormState(FormName.LibrarianExportBookTemplate)
-  "
->
+  ">
 </app-export-template>
 
 <!-- Import book template -->
-<app-import-template
-  *ngIf="formManagementService.getFormState(FormName.LibrarianImportBooks)"
-  (dataEvent)="this.onReceiveDataFromForm($event)"
->
+<app-import-template *ngIf="formManagementService.getFormState(FormName.LibrarianImportBooks)"
+  (dataEvent)="this.onReceiveDataFromForm($event)">
 </app-import-template>
 
 <!-- Creaet book -->
-<app-create-book
-  *ngIf="formManagementService.getFormState(FormName.LibrarianCreateBook)"
-  (dataEvent)="this.onReceiveDataFromForm($event)"
->
+<app-create-book *ngIf="formManagementService.getFormState(FormName.LibrarianCreateBook)"
+  (dataEvent)="this.onReceiveDataFromForm($event)">
 </app-create-book>
 
 <!-- Edit book -->
-<app-edit-book
-  *ngIf="formManagementService.getFormState(FormName.LibrarianEditBook)"
-  (dataEvent)="this.onReceiveDataFromForm($event)"
->
+<app-edit-book *ngIf="formManagementService.getFormState(FormName.LibrarianEditBook)"
+  (dataEvent)="this.onReceiveDataFromForm($event)">
 </app-edit-book>

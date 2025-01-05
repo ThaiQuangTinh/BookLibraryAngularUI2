@@ -109,6 +109,11 @@
 }
 
 /* CSS for table */
+.contain-user-table {
+    max-height: calc(100vh - 240px); 
+    overflow-y: auto; 
+}
+
 .user-table tbody tr td:nth-child(1) {
     display: flex;
     align-items: center;

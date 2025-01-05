@@ -42,7 +42,7 @@ export class ImportTemplateComponent
   }
 
   ngOnInit(): void {
-    this.roleId = +(sessionStorage.getItem('role_id') || 0);
+    this.roleId = +(localStorage.getItem('role_id') || 0);
   }
 
   // Function to close form
@@ -85,6 +85,7 @@ export class ImportTemplateComponent
         .readExcelFile(file, ['username', 'email'])
         .then((data) => {
           this.users = this.convertDataToUsers(data);
+          console.log(this.users);
         })
         .catch((error) => {
           console.error('Error reading Excel file:', error);

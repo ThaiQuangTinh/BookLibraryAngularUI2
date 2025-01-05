@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BookLoanInfoServiceService } from '../../../services/reader/book-loan-info-service.service';
+import { Loan } from '../../../models/loan.model';
+import { lastValueFrom } from 'rxjs';
+import { LoanStatus } from '../../../enums/loan-status.enum';
 
 @Component({
   selector: 'app-user-borrowing-history',
@@ -11,11 +14,7 @@ import { BookLoanInfoServiceService } from '../../../services/reader/book-loan-i
 })
 export class ReaderBorrowingHistoryComponent implements OnInit {
 
-  public bookBorrowingHistory: any[] = [
-    { imageUrl: '', bookName: 'Conan', loanDate: '20/11/2025', dueDate: '20/12/2025', returnDate: '30/12/2025', fine: 0 },
-    { imageUrl: '', bookName: 'Conan', loanDate: '20/11/2025', dueDate: '20/12/2025', returnDate: '30/12/2025', fine: 0 },
-    { imageUrl: '', bookName: 'Conan', loanDate: '20/11/2025', dueDate: '20/12/2025', returnDate: '30/12/2025', fine: 0 },
-  ]
+  public bookBorrowingHistory: Loan[] = [];
 
   constructor(
     private bookLoanInfoService: BookLoanInfoServiceService
@@ -23,24 +22,43 @@ export class ReaderBorrowingHistoryComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
-
+  async ngOnInit() {
+    const borrowIntime = (await this.getBookBorrowingHistory()) ?? [];
+    const borrowOverdue = (await this.getOverdueBorrowing())?.filter(item => {
+      return item.status == LoanStatus.BORROWED;
+    }) ?? [];
+    this.bookBorrowingHistory = [...borrowIntime, ...borrowOverdue];
   }
 
   // Function to fectch data
-  public fetchBookBorrowingHistory(): void {
-    const username = sessionStorage.getItem('username') || '';
+  public async getBookBorrowingHistory(): Promise<Loan[]> {
+    const username = localStorage.getItem('username') || '';
 
     if (username) {
-      this.bookLoanInfoService.getBorrowingHistory(username)
-        .subscribe({
-          next: (res) => {
+      try {
+        const res = await lastValueFrom(this.bookLoanInfoService.getBorrowingHistory(username));
+        return res.data;
+      } catch (err) {
+        return [];
+      }
+    } else {
+      return [];
+    }
+  }
 
-          },
-          error: (err) => {
-            console.error(err.message);
-          }
-        })
+  // Function to fectch data
+  public async getOverdueBorrowing(): Promise<Loan[]> {
+    const username = localStorage.getItem('username') || '';
+
+    if (username) {
+      try {
+        const res = await lastValueFrom(this.bookLoanInfoService.getOverdue(username));
+        return res.data;
+      } catch (err) {
+        return [];
+      }
+    } else {
+      return [];
     }
   }
 

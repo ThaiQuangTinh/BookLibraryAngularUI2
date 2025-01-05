@@ -38,14 +38,6 @@ export class BookManagementComponent implements OnInit {
 
   // Function to fetch book
   private async fetchBooks(){
-    // this.bookService.getAllBook().subscribe({
-    //   next: (res) => {
-    //     this.books = res;
-    //   },
-    //   error: (err) => {
-    //     console.log(err.message);
-    //   },
-    // });
     this.books = await lastValueFrom(this.bookService.getAllBook());
   }
 
@@ -98,4 +90,5 @@ export class BookManagementComponent implements OnInit {
     }
     console.log(this.books);
   }, 1000);
+  
 }

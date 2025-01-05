@@ -6,11 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class SafeImagePipe implements PipeTransform {
 
   transform(value: string, defaultImage: string = 'assets/book.png'): string {
-    if (!value || value.trim() === '') {
-      return defaultImage;
-    }
-    
-    return value;
+    return value || defaultImage;
   }
 
 }

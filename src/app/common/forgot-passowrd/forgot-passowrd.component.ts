@@ -34,7 +34,7 @@ export class ForgotPassowrdComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const email = sessionStorage.getItem('email_to_forgot_pass') || '';
+    const email = localStorage.getItem('email_to_forgot_pass') || '';
     if (email) {
       this.forgotPasswordForm.get('email')?.setValue(email);
       this.isConfirmCodeButtonVisible = true;
@@ -60,7 +60,7 @@ export class ForgotPassowrdComponent implements OnInit {
       this.isConfirmCodeButtonVisible = true;
 
       // Save email to session storage
-      sessionStorage.setItem('email_to_forgot_pass', email);
+      localStorage.setItem('email_to_forgot_pass', email);
 
       // Call service to send email
       this.emailService.senCodeToEmail(email).subscribe({
@@ -85,7 +85,7 @@ export class ForgotPassowrdComponent implements OnInit {
       return;
     }
 
-    sessionStorage.setItem('code_email', this.forgotPasswordForm.get('authenticationCode')?.value);
+    localStorage.setItem('code_email', this.forgotPasswordForm.get('authenticationCode')?.value);
     this.navigationService.navigate('./reset-password');
   }
 

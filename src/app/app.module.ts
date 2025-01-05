@@ -54,6 +54,7 @@ import { BookReturnConfirmDialogComponent } from './librarian/components/book-re
 import { BookImagePipe } from './pipes/book-image.pipe';
 import { BookCategoryPipe } from './pipes/book-category.pipe';
 import { PageNotFoundComponent } from '././common/page-not-found/page-not-found.component';
+import { LoanStatusLabelPipe } from './pipes/loan-status-label.pipe';
 
 @NgModule({
   declarations: [
@@ -96,6 +97,7 @@ import { PageNotFoundComponent } from '././common/page-not-found/page-not-found.
     BookImagePipe,
     BookCategoryPipe,
     PageNotFoundComponent,
+    LoanStatusLabelPipe,
   ],
   imports: [
     BrowserModule,

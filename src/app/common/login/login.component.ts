@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenServiceService } from '../../services/common/authen-service.service';
@@ -13,7 +13,7 @@ import { NavigationServiceService } from '../../services/common/navigation-servi
     '../../../assets/styles/form.css'
   ]
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
   // Variable to store form
   loginForm!: FormGroup;
@@ -36,6 +36,18 @@ export class LoginComponent {
       username: [``, [Validators.required]],
       password: [``, [Validators.required, Validators.minLength(7)]]
     });
+  }
+
+  ngOnInit(): void {
+    const token = localStorage.getItem('authen_token');
+    if (token) {
+      this.authenService.validateToken(token).subscribe({
+        next: () => {
+          const roleId = this.authenService.decodeToken(token).roleId;
+          this.navigationService.navigateByRoleId(roleId);
+        },
+      });
+    }
   }
 
   // Fucntion to show or hide password

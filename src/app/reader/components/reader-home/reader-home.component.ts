@@ -38,7 +38,7 @@ export class ReaderHomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.username = sessionStorage.getItem('username') || '';
+    this.username = localStorage.getItem('username') || '';
     if (!this.username) {
       this.toastMessageService.showError('Please login into application!');
       return;

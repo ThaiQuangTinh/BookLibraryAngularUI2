@@ -7,12 +7,12 @@
 
     <div class="left-header">
         <div class="left-header-title">All book</div>
-        <div class="book-count">(100)</div>
+        <div class="book-count">({{loans.length}})</div>
     </div>
 
     <div class="right-header">
         <div class="search-bar">
-            <input type="text" id="inputSearchUser" placeholder="Search">
+            <input type="text" id="inputSearchUser" placeholder="Search" (input)="onBookSearch($event)">
             <i class="fa-solid fa-magnifying-glass bl-button-hover"></i>
         </div>
 
@@ -37,7 +37,7 @@
                 <th>Book copy code</th>
                 <th>Borrower id</th>
                 <th>Category</th>
-                <th>Ammount</th>
+                <!-- <th>Ammount</th> -->
                 <th>Return</th>
             </tr>
         </thead>
@@ -45,15 +45,14 @@
         <tbody>
             <tr *ngFor="let loan of loans;index as i">
                 <td>
-                    <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1328768386i/6393242.jpg"
-                        alt="" onerror="this.src='book.png'">
+                    <img [src]="loan.book.imageUrl[0] | safeImage:'book.png'" alt="">
                     <span>{{loan.book.title}}</span>
                 </td>
                 <td>{{loan.book.author}}</td>
                 <td>{{loan.book._id}}</td>
                 <td>{{loan.readerUsername}}</td>
                 <td>{{loan.book.categorys | bookCategory}}</td>
-                <td>{{loan.book.totalCopies}}</td>
+                <!-- <td>{{loan.book.totalCopies}}</td> -->
                 <td class="edit-icon">
                     <i class="fa-regular fa-circle-check" (click)="showBookReturnConfirmDialog(i)"></i>
                 </td>
@@ -65,7 +64,6 @@
 
 <!-- Book return confirm dialog -->
 <app-book-return-confirm-dialog *ngIf="formManagementService.getFormState(FormName.LibrarianBookReturnConfirmDialog)"
- (onConfirm)="this.returnBook()"
->
+    (onConfirm)="this.returnBook()">
 
 </app-book-return-confirm-dialog>

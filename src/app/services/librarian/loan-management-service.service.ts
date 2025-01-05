@@ -38,7 +38,7 @@ export class LoanManagementServiceService {
     userCode: string,
     bookCopyCode: string
   ): Observable<CommonResponse<any>> {
-    const librarianUserName = sessionStorage.getItem('username') ?? '';
+    const librarianUserName = localStorage.getItem('username') ?? '';
     const headers = this.createHeader();
     const body = {
       readerUsername: userCode,
