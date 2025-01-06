@@ -24,12 +24,15 @@
                 <th>Publisher</th>
                 <th>Publisher year</th>
                 <th>Category</th>
-                <th>Ammount</th>
+                <!-- <th>Ammount</th> -->
                 <th>Delete</th>
             </tr>
         </thead>
 
         <tbody>
+            <tr *ngIf="favoritesBook.length === 0" class="record-not-found">
+                <td colspan="8" class="text-center">Record not found!</td>
+            </tr>
 
             <tr *ngFor="let book of favoritesBook">
                 <td class="checkbox">
@@ -37,14 +40,14 @@
                         [checked]="selectedBookIds.includes(book.id)">
                 </td>
                 <td>
-                    <img src="{{book.imageUrl}}" onerror="this.src='book.png'" alt="">
+                    <img [src]="book.imageUrl | safeImage: 2" alt="Book">
                     <span>{{book.title}}</span>
                 </td>
                 <td>{{book.author}}</td>
                 <td>{{book.publisher}}</td>
                 <td>{{book.publishYear | dateFormat}}</td>
                 <td>{{book.categoryName}}</td>
-                <td>{{book.totalCopies}}</td>
+                <!-- <td>{{book.totalCopies}}</td> -->
                 <td class="delete-icon" (click)="this.removeFavoriteBook(book.id)">
                     <i class="fa-solid fa-trash"></i>
                 </td>

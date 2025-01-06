@@ -13,7 +13,7 @@
     <div id="rightHeader">
         <div id="containUserInfo" (click)="showUserProfileService()" mat-raised-button matTooltip="User information"
             matTooltipPosition="above">
-            <img [src]="user.imageUrl | safeImage:'user_avatar.png' " alt="avatar_user" id="avatar_user">
+            <img [src]="user.imageUrl | safeImage:1 " alt="avatar_user" id="avatar_user">
             <span id="fullname">{{user.fullname}}</span>
         </div>
 

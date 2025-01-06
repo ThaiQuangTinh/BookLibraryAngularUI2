@@ -27,9 +27,11 @@ export class BannerForReaderComponent implements OnInit {
     this.categoryService.getPopularCategories()
     .subscribe({
       next: (res) => {
+        console.log(res)
         this.popularCategories = res.data.map((element: any) => {
           return { categoryName: element.categoryName, bookCount: element.books, imageUrl: element.imageUrl };
         });
+        console.log(this.popularCategories);
       }
     });
   }

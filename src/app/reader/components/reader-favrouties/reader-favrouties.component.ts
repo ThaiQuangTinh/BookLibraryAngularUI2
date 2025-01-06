@@ -92,7 +92,11 @@ export class ReaderFavroutiesComponent implements OnInit {
 
   //
   isAllSelected(): boolean {
-    return this.selectedBookIds.length === this.favoritesBook.length;
+    if (this.selectAllBooks.length !== 0 && this.favoritesBook.length !== 0) {
+      return this.selectedBookIds.length === this.favoritesBook.length;
+    }
+
+    return false;
   }
 
   // Function to remove favorite book

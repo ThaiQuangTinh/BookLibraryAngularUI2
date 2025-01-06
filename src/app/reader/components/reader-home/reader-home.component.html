@@ -38,13 +38,13 @@
         </thead>
 
         <tbody>
-            <div *ngIf="books.length === 0" style="padding: 10px;">
-               No matching results found.
-            </div>
+            <tr *ngIf="books.length === 0" class="record-not-found">
+                <td colspan="7" class="text-center">Record not found!</td>
+            </tr>
 
             <tr *ngFor="let book of books">
                 <td>
-                    <img src="{{book.imageUrl}}" onerror="this.src='book.png'" alt="">
+                    <img [src]="book.imageUrl | safeImage: 2" alt="Book">
                     <span>{{book.title}}</span>
                 </td>
                 <td>{{book.author}}</td>

@@ -9,6 +9,7 @@ import { FormManagementServiceService } from '../../../services/common/form-mana
 import { FormName } from '../../../enums/form-name.enum';
 import { FormAction } from '../../../enums/form-action.enum';
 import { lastValueFrom } from 'rxjs';
+import { SearchDebounceServiceService } from '../../../services/common/search-debounce-service.service';
 
 @Component({
   selector: 'app-book-management',
@@ -24,20 +25,24 @@ export class BookManagementComponent implements OnInit {
   // Variable to storage book list
   public books: Book[] = [];
 
+  private searchDebounce!: (bookName: string) => void;
+
   constructor(
     private toastService: ToastServiceService,
     private confirmDialogService: ConfirmationDialogService,
     private overlayService: OverlayServiceService,
     private bookService: BookServiceService,
-    public formManagementService: FormManagementServiceService
-  ) {}
+    public formManagementService: FormManagementServiceService,
+    private searchDebounceService: SearchDebounceServiceService
+  ) { }
 
-  async ngOnInit(){
+  async ngOnInit() {
     await this.fetchBooks();
+    this.initializeSearchDebounce();
   }
 
   // Function to fetch book
-  private async fetchBooks(){
+  private async fetchBooks() {
     this.books = await lastValueFrom(this.bookService.getAllBook());
   }
 
@@ -65,30 +70,17 @@ export class BookManagementComponent implements OnInit {
     this.searchDebounce(bookName);
   }
 
-  private debounce<T extends (...args: any[]) => void>(
-    func: T,
-    wait: number
-  ): (...args: Parameters<T>) => void {
-    let timeoutId: ReturnType<typeof setTimeout> | null = null;
-
-    return (...args: Parameters<T>) => {
-      if (timeoutId !== null) {
-        clearTimeout(timeoutId);
+  private initializeSearchDebounce(): void {
+    this.searchDebounce = this.searchDebounceService.debounce(async (bookName: string) => {
+      await this.fetchBooks();
+      if (bookName && bookName !== '') {
+        this.books = this.books.filter((book) =>
+          book.title.toLowerCase().includes(bookName.toLowerCase())
+        );
       }
-      timeoutId = setTimeout(() => {
-        func(...args);
-      }, wait);
-    };
+      console.log(this.books);
+    }, 1000);
   }
 
-  private searchDebounce = this.debounce(async (bookName: string) => {
-    await this.fetchBooks();
-    if (bookName && bookName !== '') {
-      this.books = this.books.filter((book) =>
-        book.title.toLowerCase().includes(bookName.toLowerCase())
-      );
-    }
-    console.log(this.books);
-  }, 1000);
-  
+
 }

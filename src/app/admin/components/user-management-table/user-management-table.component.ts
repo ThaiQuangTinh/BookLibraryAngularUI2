@@ -5,6 +5,7 @@ import { FormName } from '../../../enums/form-name.enum';
 import { FormManagementServiceService } from '../../../services/common/form-management-service.service';
 import { RoleHeplperServiceService } from '../../../services/common/role-heplper-service.service';
 import { ToastServiceService } from '../../../services/utilities/toast-service.service';
+import { SearchDebounceServiceService } from '../../../services/common/search-debounce-service.service';
 
 @Component({
   selector: 'app-user-management-table',
@@ -31,6 +32,8 @@ export class UserManagementTableComponent implements OnInit {
   // Variable to contain data of input search
   public searchQuery: string = '';
 
+  private searchDebounce!: (fulname: string) => void;
+
   // ViewChild to reference the "All" checkbox
   @ViewChild('checkboxAll') checkboxAll: ElementRef | undefined;
 
@@ -48,30 +51,21 @@ export class UserManagementTableComponent implements OnInit {
   constructor(
     public formManagementService: FormManagementServiceService,
     public roleHelperService: RoleHeplperServiceService,
-    private toastMessageService: ToastServiceService
+    private toastMessageService: ToastServiceService,
+    private searchDebounceService: SearchDebounceServiceService
   ) {
 
   }
 
   ngOnInit(): void {
     this.buttonTabList[0].isActive = true;
+    this.initializeSearchDebounce();
   }
 
   // Function to open form
   public openForm(formName: FormName): void {
     this.formManagementService.openForm(formName);
   }
-
-  // Function is call when currentTab modify (Input)
-  // ngOnChanges(changes: SimpleChanges): void {
-  //   if (changes['currentTab']) {
-  //     const previousValue = changes['currentTab'].previousValue;
-  //     const currentValue = changes['currentTab'].currentValue;
-  //     if (previousValue !== currentValue) {
-  //       this.onChangeTab(currentValue);
-  //     }
-  //   }
-  // }
 
 
   // Function to change tab
@@ -104,12 +98,18 @@ export class UserManagementTableComponent implements OnInit {
       this.changeTabEvent.emit(this.currentTab);
     }
 
-    this.users = this.users.filter(user => {
-      const matchesRole = this.currentTab === Role.All
-        || user.roleId === this.roleHelperService.getRoleIdByName(this.currentTab);
-      const matchesQuery = user.fullname.toLowerCase().includes(searchQueryLower);
-      return matchesRole && matchesQuery;
-    });
+    this.searchDebounce(searchQueryLower);
+  }
+
+  private initializeSearchDebounce(): void {
+    this.searchDebounce = this.searchDebounceService.debounce(async (searchQueryLower: string) => {
+      this.users = this.users.filter(user => {
+        const matchesRole = this.currentTab === Role.All
+          || user.roleId === this.roleHelperService.getRoleIdByName(this.currentTab);
+        const matchesQuery = user.fullname.toLowerCase().includes(searchQueryLower);
+        return matchesRole && matchesQuery;
+      });
+    }, 500);
   }
 
   // Function to select many checkboxes

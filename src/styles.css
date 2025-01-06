@@ -75,3 +75,9 @@ button:disabled:hover {
     font-weight: bold;
     font-weight: 500;
 }
+
+/* CSS for recor table not found */
+.record-not-found {
+    padding: 20px;
+    font-weight: 500;
+}

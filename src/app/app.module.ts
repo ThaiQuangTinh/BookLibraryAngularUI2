@@ -54,7 +54,8 @@ import { BookReturnConfirmDialogComponent } from './librarian/components/book-re
 import { BookImagePipe } from './pipes/book-image.pipe';
 import { BookCategoryPipe } from './pipes/book-category.pipe';
 import { PageNotFoundComponent } from '././common/page-not-found/page-not-found.component';
-import { LoanStatusLabelPipe } from './pipes/loan-status-label.pipe';
+import { CheclOverdueStatusPipe } from './pipes/check-overdue-status.pipe';
+import { GetCategoryImagePipe } from './pipes/get-category-image.pipe';
 
 @NgModule({
   declarations: [
@@ -97,7 +98,8 @@ import { LoanStatusLabelPipe } from './pipes/loan-status-label.pipe';
     BookImagePipe,
     BookCategoryPipe,
     PageNotFoundComponent,
-    LoanStatusLabelPipe,
+    CheclOverdueStatusPipe,
+    GetCategoryImagePipe,
   ],
   imports: [
     BrowserModule,

@@ -17,7 +17,7 @@
             </div>
 
             <div class="banner-item-right">
-                <img class="book-image" src="{{category.imageUrl}}" alt="" onerror="this.src='book.png'">
+                <img class="book-image" [src]="category.categoryName| getCategoryImage" alt="">
             </div>
 
         </div>

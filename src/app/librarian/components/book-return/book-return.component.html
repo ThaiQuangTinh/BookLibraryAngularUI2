@@ -45,7 +45,7 @@
         <tbody>
             <tr *ngFor="let loan of loans;index as i">
                 <td>
-                    <img [src]="loan.book.imageUrl[0] | safeImage:'book.png'" alt="">
+                    <img [src]="loan.book.imageUrl[0] | safeImage:2" alt="">
                     <span>{{loan.book.title}}</span>
                 </td>
                 <td>{{loan.book.author}}</td>

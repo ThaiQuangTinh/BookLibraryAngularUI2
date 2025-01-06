@@ -14,20 +14,26 @@ import { LoanStatus } from '../../../enums/loan-status.enum';
 })
 export class ReaderBorrowingHistoryComponent implements OnInit {
 
-  public bookBorrowingHistory: Loan[] = [];
+  public borrowIntime: Loan[] = [];
+
+  public borrowOverdue: Loan[] = [];
+
 
   constructor(
     private bookLoanInfoService: BookLoanInfoServiceService
   ) {
 
   }
+  /**
+   * Lịch sử đã mượn: lấy những lượt mượn đã trả đúng hạn và quá hạn
+   * OVERDUE có 2 status: đang mượn và trả quá hạn 
+   */
 
   async ngOnInit() {
-    const borrowIntime = (await this.getBookBorrowingHistory()) ?? [];
-    const borrowOverdue = (await this.getOverdueBorrowing())?.filter(item => {
-      return item.status == LoanStatus.BORROWED;
+    this.borrowIntime = (await this.getBookBorrowingHistory()) ?? [];
+    this.borrowOverdue = (await this.getOverdue())?.filter(item => {
+      return item.status == LoanStatus.OVERDUE;
     }) ?? [];
-    this.bookBorrowingHistory = [...borrowIntime, ...borrowOverdue];
   }
 
   // Function to fectch data
@@ -47,7 +53,7 @@ export class ReaderBorrowingHistoryComponent implements OnInit {
   }
 
   // Function to fectch data
-  public async getOverdueBorrowing(): Promise<Loan[]> {
+  public async getOverdue(): Promise<Loan[]> {
     const username = localStorage.getItem('username') || '';
 
     if (username) {

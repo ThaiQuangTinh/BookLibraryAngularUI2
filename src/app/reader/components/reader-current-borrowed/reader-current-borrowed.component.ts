@@ -16,6 +16,11 @@ export class ReaderCurrentBorrowedComponent {
 
   public bookCurrentBorrowed: Loan[] = [];
 
+  public returnIntime: Loan[] = [];
+
+  public returnOverdue: Loan[] = [];
+
+
   constructor(
     private bookLoanInfoService: BookLoanInfoServiceService
   ) {
@@ -23,12 +28,12 @@ export class ReaderCurrentBorrowedComponent {
   }
 
   async ngOnInit() {
-    const returnIntime = (await this.getBookBorrowingHistory()) ?? [];
-    const returnOverdue = (await this.getOverdueBorrowing())?.filter(item => {
-      return item.status == LoanStatus.RETURNED;
+    this.returnIntime = (await this.getBookBorrowingHistory()) ?? [];
+    this.returnOverdue = (await this.getOverdue())?.filter(item => {
+      return item.status == LoanStatus.BORROWED;
     }) ?? [];
-    
-    this.bookCurrentBorrowed = [...returnIntime, ...returnOverdue];
+
+    this.bookCurrentBorrowed = [...this.returnIntime, ...this.returnOverdue];
   }
 
   // Function to fectch data
@@ -47,7 +52,7 @@ export class ReaderCurrentBorrowedComponent {
     }
   }
 
-  public async getOverdueBorrowing(): Promise<Loan[]> {
+  public async getOverdue(): Promise<Loan[]> {
     const username = localStorage.getItem('username') || '';
 
     if (username) {

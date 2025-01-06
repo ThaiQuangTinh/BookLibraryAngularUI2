@@ -3,7 +3,7 @@
     padding: 20px 40px;
     padding-bottom: 100px;
     height: 100%;
-    overflow-y: auto !important;
+    /* overflow-y: auto !important; */
 }
 
 /* CSS for pagination */

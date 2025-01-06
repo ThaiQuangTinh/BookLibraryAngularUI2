@@ -20,15 +20,29 @@
         </thead>
 
         <tbody>
+            <tr *ngIf="borrowIntime.length === 0" class="record-not-found">
+                <td colspan="4" class="text-center">Record not found!</td>
+            </tr>
 
-            <tr *ngFor="let item of bookBorrowingHistory">
+            <tr *ngFor="let item of borrowIntime">
                 <td>
-                    <img [src]="item.book.imageUrl[0] | safeImage: 'book.png'" alt="Book">
+                    <img [src]="item.book.imageUrl[0] | safeImage: 2" alt="Book">
                     <span>{{item.book.title}}</span>
                 </td>
                 <td>{{item.loanDate | dateFormat}}</td>
                 <td>{{item.dueDate | dateFormat}}</td>
-                <td [ngClass]="item.status | loanStatusLabel">{{item.status | loanStatusLabel: true}}</td>
+                <td class="intime">Intime</td>
+                <!-- <td>{{item.fine}}$</td> -->
+            </tr>
+
+            <tr *ngFor="let item of borrowOverdue">
+                <td>
+                    <img [src]="item.book.imageUrl[0] | safeImage: 2" alt="Book">
+                    <span>{{item.book.title}}</span>
+                </td>
+                <td>{{item.loanDate | dateFormat}}</td>
+                <td>{{item.dueDate | dateFormat}}</td>
+                <td class="overdue">Overdue</td>
                 <!-- <td>{{item.fine}}$</td> -->
             </tr>
 

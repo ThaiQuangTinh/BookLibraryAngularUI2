@@ -31,7 +31,7 @@ export class Book {
         this.categoryName = data?.categoryName || '';
         this.totalCopies = data?.totalCopies || 0;
         this.description = data?.description || '';
-        this.imageUrl = data?.imageUrl ? `http://localhost:8200${data.imageUrl}` : '';
+        this.imageUrl = data?.imageUrl || '';
     }
 
 }
