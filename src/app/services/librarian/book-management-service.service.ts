@@ -5,13 +5,14 @@ import { lastValueFrom, Observable } from 'rxjs';
 import { BookReturnConfirmDialogComponent } from '../../librarian/components/book-return-confirm-dialog/book-return-confirm-dialog.component';
 import { CommonResponse } from '../../models/common-response.model';
 import { AuthenServiceService } from '../common/authen-service.service';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BookManagementServiceService {
   // Define base api url
-  private baseApiUrl: string = 'http://localhost:8200/books-command';
+  private baseApiUrl: string = `${environment.bookService}/books-command`;
   private createNewBookURL: string = 'create';
   private updateBookURL: string = 'update';
   private createManyURL : string = "create-many"

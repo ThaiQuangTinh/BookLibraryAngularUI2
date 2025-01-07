@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { jwtDecode } from 'jwt-decode';
 import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import { Observable } from 'rxjs';
 export class AuthenServiceService {
 
   // Define base api url for all api
-  private baseApiUrl: string = 'http://localhost:8100/v3';
+  private baseApiUrl: string = `${environment.authenService}/v3`;
 
   constructor(
     private http: HttpClient

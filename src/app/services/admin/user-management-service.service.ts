@@ -4,6 +4,7 @@ import { BehaviorSubject, map, Observable } from 'rxjs';
 import { User } from '../../models/user.model';
 import { AuthenServiceService } from '../common/authen-service.service';
 import { Role } from '../../enums/role-enum';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ import { Role } from '../../enums/role-enum';
 export class UserManagementServiceService {
 
   // Define base api url
-  private baseApiUrl: string = 'http://localhost:8100/v3';
+  private baseApiUrl: string = `${environment.authenService}/v3`;
 
   constructor(
     private http: HttpClient,

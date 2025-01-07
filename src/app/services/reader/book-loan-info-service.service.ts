@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { AuthenServiceService } from '../common/authen-service.service';
 import { Loan } from '../../models/loan.model';
 import { CommonResponse } from '../../models/common-response.model';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ import { CommonResponse } from '../../models/common-response.model';
 export class BookLoanInfoServiceService {
 
   // Define base api url
-  private baseApiUrl: string = 'http://localhost:8300/loans-for-user';
+  private baseApiUrl: string = `${environment.loanService}/loans-for-user`;
 
   constructor(
     private http: HttpClient,

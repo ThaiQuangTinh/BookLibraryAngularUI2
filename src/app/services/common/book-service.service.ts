@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable, pipe } from 'rxjs';
 import { Book } from '../../models/book.model';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import { Book } from '../../models/book.model';
 export class BookServiceService {
 
   // Define base api url
-  private baseApiUrl: string = 'http://localhost:8200/books';
+  private baseApiUrl: string = `${environment.bookService}/books`;
 
   constructor(
     private http: HttpClient

@@ -4,13 +4,14 @@ import { lastValueFrom, Observable } from 'rxjs';
 import { CommonResponse } from '../../models/common-response.model';
 import { Category } from '../../models/category.model';
 import { AuthenServiceService } from './authen-service.service';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoryServiceService {
 
-  private baseApiUrl: string = 'http://localhost:8200/book-categories';
+  private baseApiUrl: string = `${environment.bookService}/book-categories`;
   private getAll = "/get-all";
   constructor(
     private http: HttpClient,

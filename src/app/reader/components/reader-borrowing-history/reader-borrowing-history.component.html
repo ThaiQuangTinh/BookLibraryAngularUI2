@@ -20,7 +20,7 @@
         </thead>
 
         <tbody>
-            <tr *ngIf="borrowIntime.length === 0" class="record-not-found">
+            <tr *ngIf="borrowIntime.length === 0 && borrowOverdue.length === 0" class="record-not-found">
                 <td colspan="4" class="text-center">Record not found!</td>
             </tr>
 

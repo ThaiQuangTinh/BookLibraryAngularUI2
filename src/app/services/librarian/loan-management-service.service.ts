@@ -4,13 +4,14 @@ import { AuthenServiceService } from '../common/authen-service.service';
 import { last, lastValueFrom, Observable } from 'rxjs';
 import { CommonResponse } from '../../models/common-response.model';
 import { Loan } from '../../models/loan.model';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoanManagementServiceService {
   // Define base api url
-  private baseApiUrl: string = 'http://localhost:8300';
+  private baseApiUrl: string = environment.loanService;
   private bookLendingUrl: string = '/loans-command/post-borrow-book';
   private bookReturnUrl: string = '/loans-command/post-return-book';
   private getAllBorrowedUrl: string = '/loans/get-borrowed-page';
