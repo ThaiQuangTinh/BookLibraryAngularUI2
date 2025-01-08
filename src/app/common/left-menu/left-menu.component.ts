@@ -30,7 +30,7 @@ export class LeftMenuComponent implements OnInit {
     if (this.roleId == 3) {
       this.pages = [
         { name: 'Home', link: 'reader-dashboard/home', icon: 'fa-house', isSelectedPage: true },
-        { name: 'Favroutie', link: 'reader-dashboard/favourite', icon: 'fa-star' },
+        { name: 'Favourite', link: 'reader-dashboard/favourite', icon: 'fa-star' },
         { name: 'Borrowing history', link: 'reader-dashboard/borrowing-history', icon: 'fa-clock-rotate-left' },
         { name: 'Current borrowed', link: 'reader-dashboard/current-borrowed', icon: 'fa-ticket' },
       ];
